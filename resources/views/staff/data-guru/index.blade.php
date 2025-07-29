@@ -52,12 +52,12 @@
                                 Data Guru
                             </a>
                             
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
+                            <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
                                 <i class="fas fa-book-open mr-3 text-blue-500"></i>
                                 Mata Pelajaran
                             </a>
                             
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
+                            <a href="/staff/jadwal-pelajaran" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
                                 <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>
                                 Jadwal Pelajaran
                             </a>
