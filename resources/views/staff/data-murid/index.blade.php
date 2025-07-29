@@ -47,7 +47,7 @@
                                 Data Siswa
                             </a>
                             
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
+                            <a href="/staff/data-guru" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
                                 <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>
                                 Data Guru
                             </a>
@@ -121,268 +121,268 @@
             
             <!-- Content Area -->
             <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-800">Data Siswa</h1>
-                <p class="text-gray-600">Manajemen data siswa per kelas</p>
-            </div>
-            <button onclick="openModal('tambahModal')" 
-                    class="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
-                <i class="fas fa-plus mr-2"></i>
-                Tambah Siswa
-            </button>
-        </div>
-
-        <!-- Filter Kelas -->
-        <div class="bg-white rounded-lg shadow p-4 mb-6">
-            <div class="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-4">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Filter Kelas</label>
-                    <select id="filterKelas" onchange="filterByClass()" 
-                            class="block w-full md:w-48 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="all">Semua Kelas</option>
-                        <option value="X IPA 1">X IPA 1</option>
-                        <option value="X IPA 2">X IPA 2</option>
-                        <option value="XI IPA 1">XI IPA 1</option>
-                        <option value="XI IPA 2">XI IPA 2</option>
-                        <option value="XII IPA 1">XII IPA 1</option>
-                        <option value="XII IPA 2">XII IPA 2</option>
-                        <option value="X IPS 1">X IPS 1</option>
-                        <option value="X IPS 2">X IPS 2</option>
-                        <option value="XI IPS 1">XI IPS 1</option>
-                        <option value="XI IPS 2">XI IPS 2</option>
-                        <option value="XII IPS 1">XII IPS 1</option>
-                        <option value="XII IPS 2">XII IPS 2</option>
-                    </select>
+                    <h1 class="text-2xl font-bold text-gray-800">Data Siswa</h1>
+                    <p class="text-gray-600">Manajemen data siswa per kelas</p>
                 </div>
-                <div class="w-full md:w-auto flex-1">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Cari Siswa</label>
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="Cari berdasarkan NIS atau nama..."
-                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 pl-10">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fas fa-search text-gray-400"></i>
+                <button onclick="openModal('tambahModal')" 
+                        class="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i>
+                    Tambah Siswa
+                </button>
+            </div>
+
+            <!-- Filter Kelas -->
+            <div class="bg-white rounded-lg shadow p-4 mb-6">
+                <div class="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Filter Kelas</label>
+                        <select id="filterKelas" onchange="filterByClass()" 
+                                class="block w-full md:w-48 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="all">Semua Kelas</option>
+                            <option value="X IPA 1">X IPA 1</option>
+                            <option value="X IPA 2">X IPA 2</option>
+                            <option value="XI IPA 1">XI IPA 1</option>
+                            <option value="XI IPA 2">XI IPA 2</option>
+                            <option value="XII IPA 1">XII IPA 1</option>
+                            <option value="XII IPA 2">XII IPA 2</option>
+                            <option value="X IPS 1">X IPS 1</option>
+                            <option value="X IPS 2">X IPS 2</option>
+                            <option value="XI IPS 1">XI IPS 1</option>
+                            <option value="XI IPS 2">XI IPS 2</option>
+                            <option value="XII IPS 1">XII IPS 1</option>
+                            <option value="XII IPS 2">XII IPS 2</option>
+                        </select>
+                    </div>
+                    <div class="w-full md:w-auto flex-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Cari Siswa</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Cari berdasarkan NIS atau nama..."
+                                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 pl-10">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Data Siswa by Kelas -->
-        <div id="studentsByClassContainer">
-            <!-- Data akan diisi oleh JavaScript -->
-        </div>
-
-        <!-- Modal Tambah/Edit Siswa -->
-        <div id="tambahModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h3 class="text-lg font-semibold text-gray-800" id="modalTitle">Tambah Data Siswa</h3>
-                    <button onclick="closeModal('tambahModal')" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="mt-4">
-                    <form id="studentForm">
-                        <input type="hidden" id="studentId">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="nis" class="block text-sm font-medium text-gray-700">NIS*</label>
-                                <input type="text" id="nis" required
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="nisn" class="block text-sm font-medium text-gray-700">NISN*</label>
-                                <input type="text" id="nisn" required
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap*</label>
-                                <input type="text" id="nama" required
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="jenisKelamin" class="block text-sm font-medium text-gray-700">Jenis Kelamin*</label>
-                                <select id="jenisKelamin" required
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas*</label>
-                                <select id="kelas" required
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="">Pilih Kelas</option>
-                                    <option value="X IPA 1">X IPA 1</option>
-                                    <option value="X IPA 2">X IPA 2</option>
-                                    <option value="XI IPA 1">XI IPA 1</option>
-                                    <option value="XI IPA 2">XI IPA 2</option>
-                                    <option value="XII IPA 1">XII IPA 1</option>
-                                    <option value="XII IPA 2">XII IPA 2</option>
-                                    <option value="X IPS 1">X IPS 1</option>
-                                    <option value="X IPS 2">X IPS 2</option>
-                                    <option value="XI IPS 1">XI IPS 1</option>
-                                    <option value="XI IPS 2">XI IPS 2</option>
-                                    <option value="XII IPS 1">XII IPS 1</option>
-                                    <option value="XII IPS 2">XII IPS 2</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="jurusan" class="block text-sm font-medium text-gray-700">Jurusan*</label>
-                                <select id="jurusan" required
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="">Pilih Jurusan</option>
-                                    <option value="IPA">IPA</option>
-                                    <option value="IPS">IPS</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="tempatLahir" class="block text-sm font-medium text-gray-700">Tempat Lahir*</label>
-                                <input type="text" id="tempatLahir" required
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="tanggalLahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir*</label>
-                                <input type="date" id="tanggalLahir" required
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="agama" class="block text-sm font-medium text-gray-700">Agama*</label>
-                                <select id="agama" required
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="">Pilih Agama</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen">Kristen</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Budha">Budha</option>
-                                    <option value="Konghucu">Konghucu</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat*</label>
-                                <textarea id="alamat" rows="2" required
-                                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
-                            </div>
-                            <div>
-                                <label for="telepon" class="block text-sm font-medium text-gray-700">No. Telepon</label>
-                                <input type="text" id="telepon"
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" id="email"
-                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label for="status" class="block text-sm font-medium text-gray-700">Status*</label>
-                                <select id="status" required
-                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="">Pilih Status</option>
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Lulus">Lulus</option>
-                                    <option value="Pindah">Pindah</option>
-                                    <option value="Drop Out">Drop Out</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 flex justify-end space-x-3">
-                            <button type="button" onclick="closeModal('tambahModal')"
-                                    class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                Batal
-                            </button>
-                            <button type="submit"
-                                    class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
-                                Simpan
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <!-- Data Siswa by Kelas -->
+            <div id="studentsByClassContainer">
+                <!-- Data akan diisi oleh JavaScript -->
             </div>
-        </div>
 
-        <!-- Modal Detail Siswa -->
-        <div id="detailModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h3 class="text-lg font-semibold text-gray-800">Detail Data Siswa</h3>
-                    <button onclick="closeModal('detailModal')" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="mt-4">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
-                            <img id="detailFoto" src="https://placehold.co/150x200" alt="Foto siswa" 
-                                 class="h-40 w-32 object-cover rounded-md border border-gray-200">
-                        </div>
-                        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-sm text-gray-500">NIS</p>
-                                <p id="detailNis" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">NISN</p>
-                                <p id="detailNisn" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Nama Lengkap</p>
-                                <p id="detailNama" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Jenis Kelamin</p>
-                                <p id="detailJenisKelamin" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Kelas</p>
-                                <p id="detailKelas" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Jurusan</p>
-                                <p id="detailJurusan" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Tempat, Tanggal Lahir</p>
-                                <p id="detailTtl" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Agama</p>
-                                <p id="detailAgama" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Alamat</p>
-                                <p id="detailAlamat" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">No. Telepon</p>
-                                <p id="detailTelepon" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Email</p>
-                                <p id="detailEmail" class="font-medium text-gray-800">-</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-500">Status</p>
-                                <p id="detailStatus" class="font-medium text-gray-800">-</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 flex justify-end">
-                        <button onclick="closeModal('detailModal')"
-                                class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
-                            Tutup
+            <!-- Modal Tambah/Edit Siswa -->
+            <div id="tambahModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+                <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-lg font-semibold text-gray-800" id="modalTitle">Tambah Data Siswa</h3>
+                        <button onclick="closeModal('tambahModal')" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
+                    
+                    <div class="mt-4">
+                        <form id="studentForm">
+                            <input type="hidden" id="studentId">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nis" class="block text-sm font-medium text-gray-700">NIS*</label>
+                                    <input type="text" id="nis" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="nisn" class="block text-sm font-medium text-gray-700">NISN*</label>
+                                    <input type="text" id="nisn" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap*</label>
+                                    <input type="text" id="nama" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="jenisKelamin" class="block text-sm font-medium text-gray-700">Jenis Kelamin*</label>
+                                    <select id="jenisKelamin" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="kelas" class="block text-sm font-medium text-gray-700">Kelas*</label>
+                                    <select id="kelas" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="">Pilih Kelas</option>
+                                        <option value="X IPA 1">X IPA 1</option>
+                                        <option value="X IPA 2">X IPA 2</option>
+                                        <option value="XI IPA 1">XI IPA 1</option>
+                                        <option value="XI IPA 2">XI IPA 2</option>
+                                        <option value="XII IPA 1">XII IPA 1</option>
+                                        <option value="XII IPA 2">XII IPA 2</option>
+                                        <option value="X IPS 1">X IPS 1</option>
+                                        <option value="X IPS 2">X IPS 2</option>
+                                        <option value="XI IPS 1">XI IPS 1</option>
+                                        <option value="XI IPS 2">XI IPS 2</option>
+                                        <option value="XII IPS 1">XII IPS 1</option>
+                                        <option value="XII IPS 2">XII IPS 2</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="jurusan" class="block text-sm font-medium text-gray-700">Jurusan*</label>
+                                    <select id="jurusan" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="">Pilih Jurusan</option>
+                                        <option value="IPA">IPA</option>
+                                        <option value="IPS">IPS</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="tempatLahir" class="block text-sm font-medium text-gray-700">Tempat Lahir*</label>
+                                    <input type="text" id="tempatLahir" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="tanggalLahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir*</label>
+                                    <input type="date" id="tanggalLahir" required
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="agama" class="block text-sm font-medium text-gray-700">Agama*</label>
+                                    <select id="agama" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="">Pilih Agama</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Konghucu">Konghucu</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat*</label>
+                                    <textarea id="alamat" rows="2" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                </div>
+                                <div>
+                                    <label for="telepon" class="block text-sm font-medium text-gray-700">No. Telepon</label>
+                                    <input type="text" id="telepon"
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="email"
+                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label for="status" class="block text-sm font-medium text-gray-700">Status*</label>
+                                    <select id="status" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                        <option value="">Pilih Status</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Lulus">Lulus</option>
+                                        <option value="Pindah">Pindah</option>
+                                        <option value="Drop Out">Drop Out</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex justify-end space-x-3">
+                                <button type="button" onclick="closeModal('tambahModal')"
+                                        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                    Batal
+                                </button>
+                                <button type="submit"
+                                        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
+                                    Simpan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Modal Detail Siswa -->
+            <div id="detailModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+                <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-lg font-semibold text-gray-800">Detail Data Siswa</h3>
+                        <button onclick="closeModal('detailModal')" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="flex-shrink-0 mr-6 mb-4 md:mb-0">
+                                <img id="detailFoto" src="https://placehold.co/150x200" alt="Foto siswa" 
+                                    class="h-40 w-32 object-cover rounded-md border border-gray-200">
+                            </div>
+                            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">NIS</p>
+                                    <p id="detailNis" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">NISN</p>
+                                    <p id="detailNisn" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Nama Lengkap</p>
+                                    <p id="detailNama" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Jenis Kelamin</p>
+                                    <p id="detailJenisKelamin" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Kelas</p>
+                                    <p id="detailKelas" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Jurusan</p>
+                                    <p id="detailJurusan" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Tempat, Tanggal Lahir</p>
+                                    <p id="detailTtl" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Agama</p>
+                                    <p id="detailAgama" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Alamat</p>
+                                    <p id="detailAlamat" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">No. Telepon</p>
+                                    <p id="detailTelepon" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p id="detailEmail" class="font-medium text-gray-800">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Status</p>
+                                    <p id="detailStatus" class="font-medium text-gray-800">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex justify-end">
+                            <button onclick="closeModal('detailModal')"
+                                    class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
