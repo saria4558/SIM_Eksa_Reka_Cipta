@@ -71,3 +71,9 @@ Route::get('/guru/presensi', function () {
 Route::get('/guru/profil', function () {
     return view('guru.profil.profil');
 });
+
+
+// login
+Route::get('/login', function () {
+    return view('login');
+});

@@ -1,7 +1,6 @@
 @extends('wali.layouts.app')
 @section('title', 'Mata Pelajaran')
 @section('content')
-
 <body class="p-6">
   <!-- ===== Halaman Daftar Pelajaran ===== -->
   <div id="page-pelajaran" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -37,12 +36,10 @@
       </div>
     @endforeach
   </div>
-
   <!-- ===== Halaman Detail Tugas Mapel ===== -->
   <div id="page-detail" class="hidden mt-6">
     <button onclick="goBack()" class="mb-4 text-blue-600 hover:underline">&larr; Kembali</button>
     <h2 class="text-xl font-bold mb-4" id="judul-mapel">Tugas - [Mapel]</h2>
-
     <!-- Tugas Aktif -->
     <div class="overflow-x-auto bg-white rounded-xl shadow p-4 mb-6">
     <h3 class="text-lg font-semibold mb-3">Tugas Aktif</h3>
@@ -165,5 +162,4 @@
   }
   </script>
 </body>
-
 @endsection

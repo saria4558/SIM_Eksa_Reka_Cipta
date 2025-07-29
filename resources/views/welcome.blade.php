@@ -57,7 +57,7 @@
                     <a href="#about" class="text-gray-800 hover:text-indigo-600">Tentang</a>
                 </div>
                 <div>
-                    <a href="#login" class="px-4 py-2 font-medium text-indigo-600 rounded-lg border border-indigo-600 hover:bg-indigo-600 hover:text-white transition duration-300">Masuk</a>
+                    <a href="/login" class="px-4 py-2 font-medium text-indigo-600 rounded-lg border border-indigo-600 hover:bg-indigo-600 hover:text-white transition duration-300">Masuk</a>
                     <a href="#register" class="px-4 py-2 ml-3 font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition duration-300">Daftar</a>
                 </div>
                 <button class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
