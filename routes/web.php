@@ -12,28 +12,12 @@ Route::get('/staff/data-siswa', function () {return view('staff.data-murid.index
 Route::get('/staff/data-guru', function () {return view('staff.data-guru.index');});
 Route::get('/staff/data-mapel', function () {return view('staff.mata-pelajaran.index');});
 Route::get('/staff/jadwal-pelajaran', function () {return view('staff.jadwal-pelajaran.index');});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/staff/tagihan', function () {return view('staff.tagihan.index');});
+Route::get('/staff/surat', function () {return view('staff.surat.index');});
+Route::get('/staff/ijazah', function () {return view('staff.ijazah.index');});
+Route::get('/staff/inventaris', function () {return view('staff.inventaris.index');});
+Route::get('/staff/absen', function () {return view('staff.presensi.index');});
+Route::get('/staff/profil', function () {return view('staff.profil.index');});
 
 // wali
 Route::get('/wali/dashboard', function () {
