@@ -173,7 +173,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Tagihan Belum Lunas</p>
-                                <p class="text-2xl font-semibold">84</p>
+                                <p class="text-2xl font-semibold">500.000.000</p>
                             </div>
                         </div>
                     </div>
