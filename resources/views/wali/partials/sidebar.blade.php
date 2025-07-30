@@ -38,10 +38,13 @@
     </nav>
 
     <div class="p-4 border-t border-gray-200">
-      <a href="/"
-         class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-red-100 hover:text-red-600 transition">
-         <i class="fas fa-sign-out-alt mr-3 text-red-500"></i> Logout
-      </a>
+      <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit"
+              class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-red-100 hover:text-red-600 transition w-full text-left">
+              <i class="fas fa-sign-out-alt mr-3 text-red-500"></i> Logout
+          </button>
+      </form>
     </div>
   </div>
 </aside>
