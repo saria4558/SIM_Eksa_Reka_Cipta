@@ -34,16 +34,22 @@
         <img src="{{ asset('images/logo.png') }}"  alt="Logo" class="w-47 h-47">
       </div>
       <!-- Form -->
-      <form>
+      <form method="POST" action="{{ url('/login') }}">
+        @csrf
+        @if ($errors->any())
+          <div class="mb-4 text-red-600 text-sm">
+            {{ $errors->first() }}
+          </div>
+        @endif
         <div class="mb-4">
           <label class="block text-gray-700 text-base font-semibold mb-1" for="username">Username</label>
           <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                 id="username" type="text" placeholder="Username/Email" />
+                 name="username" id="username" type="text" placeholder="Username/Email" />
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-base font-semibold mb-1" for="password">Password</label>
           <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                 id="password" type="password" placeholder="Input your password account" />
+                name="password"  id="password" type="password" placeholder="Input your password account" />
         </div>
         <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
