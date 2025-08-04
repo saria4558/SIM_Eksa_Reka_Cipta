@@ -196,7 +196,7 @@
     </div>
 
     <!-- Modal for adding events -->
-    <div id="eventModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div id="eventModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-50 hidden">
         <div class="bg-white rounded-lg p-6">
             <h3 class="text-lg font-semibold mb-4">Tambah Kegiatan</h3>
             <input type="text" id="eventInput" class="border p-2 w-full mb-4" placeholder="Masukkan kegiatan...">
