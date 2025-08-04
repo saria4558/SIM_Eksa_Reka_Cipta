@@ -9,54 +9,69 @@
             <div class="px-4 py-4">
                 <!-- Menu Items -->
                 <nav class="space-y-1">
-                    <a href="/staff/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-tachometer-alt mr-3 text-blue-500"></i>
-                        Dashboard
+                    <a href="/staff/dashboard"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/dashboard') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-tachometer-alt min-w-[30px]"></i> Dashboard
                     </a>
-                    
-                    <a href="/staff/data-siswa" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.data-siswa') ? 'active' : '' }}">
-                        <i class="fas fa-users mr-3 text-blue-500"></i>
-                        Data Siswa
+
+                    <a href="/staff/data-murid"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/data-murid') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-users min-w-[30px]"></i> Data Murid
                     </a>
-                    
-                    <a href="/staff/data-guru" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.data-guru') ? 'active' : '' }}">
-                        <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>
-                        Data Guru
+
+                    <a href="/staff/data-guru"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/data-guru') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-chalkboard-teacher min-w-[30px]"></i> Data Guru
                     </a>
-                    
-                    <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.data-mapel') ? 'active' : '' }}">
-                        <i class="fas fa-book-open mr-3 text-blue-500"></i>
-                        Mata Pelajaran
+
+                    <a href="/staff/tagihan-siswa"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/tagihan-siswa') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-file-invoice-dollar min-w-[30px]"></i> Tagihan Siswa
                     </a>
-                    
-                    <a href="/staff/jadwal-pelajaran" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.jadwal-pelajaran') ? 'active' : '' }}">
-                        <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>
-                        Jadwal Pelajaran
+
+                    <a href="/staff/ijazah"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/ijazah') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-book min-w-[30px]"></i> Ijazah Siswa
                     </a>
-                    
-                    <a href="/staff/tagihan-siswa" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.tagihan-siswa') ? 'active' : '' }}">
-                        <i class="fas fa-file-invoice-dollar mr-3 text-blue-500"></i>
-                        Tagihan Siswa
+
+                    <a href="/staff/data-mapel"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/data-mapel') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-book-open min-w-[30px]"></i> Data Mata Pelajaran
                     </a>
-                    
-                    <a href="/staff/surat" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.surat') ? 'active' : '' }}">
-                        <i class="fas fa-envelope mr-3 text-blue-500"></i>
-                        Surat Masuk/Keluar
+
+                    <a href="/staff/jadwal-pelajaran"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/jadwal-pelajaran') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-calendar-alt min-w-[30px]"></i> Jadwal Pelajaran
                     </a>
-                    
-                    <a href="/staff/inventaris" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.inventaris') ? 'active' : '' }}">
-                        <i class="fas fa-warehouse mr-3 text-blue-500"></i>
-                        Inventaris Sekolah
+
+                    <a href="/staff/surat"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/surat') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-envelope min-w-[30px]"></i> Surat Masuk/Keluar
                     </a>
-                    
-                    <a href="/staff/presensi-staff" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.presensi-staff') ? 'active' : '' }}">
-                        <i class="fas fa-fingerprint mr-3 text-blue-500"></i>
-                        Presensi Staff
+
+                    <a href="/staff/inventaris"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/inventaris') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-warehouse min-w-[30px]"></i> Inventaris Sekolah
+                    </a>
+
+                    <a href="/staff/presensi"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/presensi') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-fingerprint min-w-[30px]"></i> Presensi Staff
                     </a>
                 </nav>
             </div>
         </div>
-        
+
         <!-- Bottom Profile -->
         <div class="p-4 border-t border-gray-200">
             <a href="/staff/profil" class="flex items-center px-2 py-2 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.profil') ? 'active' : '' }}">

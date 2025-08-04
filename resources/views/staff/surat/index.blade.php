@@ -1,65 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SIM-P - Surat Masuk/Keluar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <style>
-        .sidebar-link:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-        .sidebar-link.active {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-left: 4px solid #3b82f6;
-        }
-        .kop-surat {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .kop-surat h1 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .kop-surat h2 {
-            font-size: 20px;
-            font-weight: normal;
-        }
-        .kop-surat p {
-            margin: 0;
-        }
-    </style>
-</head>
-<body class="bg-gray-50">
-<div class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
-    <div class="hidden md:flex md:flex-shrink-0">
-        <div class="flex flex-col w-64 bg-white border-r border-gray-200">
-            <div class="flex items-center justify-center h-24 px-4 text-white">
-                <div class="flex items-center px-4 py-6 border-b border-gray-200">
-                    <img src="{{ asset('img/JADWAL.jpg') }}" alt="Logo" class="w-[212px] h-[69px]" />
-                </div>
-            </div>
-            <div class="flex flex-col flex-grow overflow-y-auto">
-                <div class="px-4 py-6">
-                    <nav class="space-y-1">
-                        <a href="/staff/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                            <i class="fas fa-tachometer-alt mr-3 text-blue-500"></i>Dashboard
-                        </a>
-                        <a href="/staff/surat" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link active">
-                            <i class="fas fa-file-alt mr-3 text-blue-500"></i>Surat
-                        </a>
-                        <a href="/staff/ijazah" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                            <i class="fas fa-graduation-cap mr-3 text-blue-500"></i>Ijazah
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+@extends('staff.layouts.app')
 
-    <!-- Main Content -->
+@section('title', 'Dashboard - SIM-P')
+
+@section('content')
+
+<!-- Main Content -->
     <div class="content flex-1 flex flex-col overflow-hidden">
         <!-- Top Navigation -->
         <div class="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
@@ -303,5 +248,5 @@
   // Inisialisasi render awal
   renderSurat();
 </script>
-</body>
-</html>
+
+@endsection

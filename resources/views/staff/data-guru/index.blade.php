@@ -1,130 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIM-P - Data Guru</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .sidebar-link:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-        .sidebar-link.active {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-left: 4px solid #3b82f6;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
-<body class="bg-gray-50">
-    <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <div class="hidden md:flex md:flex-shrink-0">
-            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
-                <div class="flex items-center justify-center h-24 px-4 text-white">
-                    <div class="flex items-center px-4 py-6 border-b border-gray-200">
-                        <img src="{{ asset('img/JADWAL.jpg') }}" alt="Logo" class="w-[212px] h-[69px]">
-                    </div>
-                </div>
-                <div class="flex flex-col flex-grow overflow-y-auto">
-                    <div class="px-4 py-6">                
-                        <!-- Menu Items -->
-                        <nav class="space-y-1">
-                            <a href="/staff/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-tachometer-alt mr-3 text-blue-500"></i>
-                                Dashboard
-                            </a>
-                            
-                            <a href="/staff/data-siswa" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-users mr-3 text-blue-500"></i>
-                                Data Siswa
-                            </a>
-                            
-                            <a href="/staff/data-guru" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link active">
-                                <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>
-                                Data Guru
-                            </a>
+@extends('staff.layouts.app')
 
-                            <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-address-card mr-3 text-blue-500"></i>
-                                Ijazah
-                            </a>
-                            
-                            <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-book-open mr-3 text-blue-500"></i>
-                                Mata Pelajaran
-                            </a>
-                            
-                            <a href="/staff/jadwal-pelajaran" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>
-                                Jadwal Pelajaran
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-file-invoice-dollar mr-3 text-blue-500"></i>
-                                Tagihan Siswa
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-envelope mr-3 text-blue-500"></i>
-                                Surat Masuk/Keluar
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-warehouse mr-3 text-blue-500"></i>
-                                Inventaris Sekolah
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-fingerprint mr-3 text-blue-500"></i>
-                                Presensi Staff
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-                
-                <!-- Bottom Profile -->
-                <div class="p-4 border-t border-gray-200">
-                    <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md sidebar-link">
-                        <i class="fas fa-user-circle mr-3 text-blue-500"></i>
-                        Profil
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="content flex-1 flex flex-col overflow-hidden">
-            <!-- Top Navigation -->
-            <div class="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-                <div class="flex items-center">
-                    <button id="mobileToggleSidebar" class="p-2 mr-2 rounded-lg hover:bg-gray-100 md:hidden">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 id="pageTitle" class="text-xl font-semibold text-gray-800">Data Guru</h1>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button class="p-2 rounded-full hover:bg-gray-100 relative">
-                        <i class="fas fa-bell text-gray-500"></i>
-                    </button>
-                    <div class="flex items-center mb-1">
-                        <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/100x100" alt="Foto profil staff TU dengan jas formal">
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-700">Staff TU</p>
-                            <p class="text-xs text-gray-500">Bagian Administrasi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Content Area -->
+@section('title', 'Dashboard - SIM-P')
+
+@section('content')
+
+<!-- Content Area -->
             <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
                 <!-- Header -->
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
@@ -132,7 +12,7 @@
                         <h1 class="text-2xl font-bold text-gray-800">Data Guru</h1>
                         <p class="text-gray-600">Manajemen data guru per mata pelajaran</p>
                     </div>
-                    <button onclick="openModal('tambahGuruModal')" 
+                    <button onclick="openModal('tambahGuruModal')"
                             class="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center">
                         <i class="fas fa-plus mr-2"></i>
                         Tambah Guru
@@ -194,7 +74,7 @@
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
-                        
+
                         <div class="mt-4">
                             <form id="guruForm">
                                 <input type="hidden" id="guruId">
@@ -283,7 +163,7 @@
                     // Initialize the page
                     document.addEventListener('DOMContentLoaded', function() {
                         renderTeachersTable();
-                        
+
                         // Form submission
                         guruForm.addEventListener('submit', function(e) {
                             e.preventDefault();
@@ -295,7 +175,7 @@
                     function renderTeachersTable() {
                         const tableBody = document.querySelector('#dataGuruContainer tbody');
                         tableBody.innerHTML = '';
-                        
+
                         teachers.forEach(teacher => {
                             const row = document.createElement('tr');
                             row.className = 'hover:bg-gray-50';
@@ -355,7 +235,7 @@
                     function editTeacher(id) {
                         const teacher = teachers.find(t => t.id === id);
                         if (!teacher) return;
-                        
+
                         document.getElementById('modalTitle').textContent = 'Edit Data Guru';
                         document.getElementById('guruId').value = teacher.id;
                         document.getElementById('guruNip').value = teacher.nip;
@@ -364,7 +244,7 @@
                         document.getElementById('guruEmail').value = teacher.email;
                         document.getElementById('guruTelepon').value = teacher.telepon || '';
                         document.getElementById('guruStatus').value = teacher.status;
-                        
+
                         openModal('tambahGuruModal');
                     }
 
@@ -372,7 +252,7 @@
                     function saveTeacher() {
                         const id = document.getElementById('guruId').value;
                         const isEdit = !!id;
-                        
+
                         const teacherData = {
                             nip: document.getElementById('guruNip').value,
                             nama: document.getElementById('guruNama').value,
@@ -381,7 +261,7 @@
                             telepon: document.getElementById('guruTelepon').value,
                             status: document.getElementById('guruStatus').value
                         };
-                        
+
                         if (isEdit) {
                             // Update existing teacher
                             const index = teachers.findIndex(t => t.id === parseInt(id));
@@ -393,10 +273,10 @@
                             const newId = teachers.length > 0 ? Math.max(...teachers.map(t => t.id)) + 1 : 1;
                             teachers.push({ id: newId, ...teacherData });
                         }
-                        
+
                         closeModal('tambahGuruModal');
                         renderTeachersTable();
-                        
+
                         // Show success message
                         alert(`Data guru berhasil ${isEdit ? 'diperbarui' : 'ditambahkan'}`);
                     }
@@ -410,8 +290,5 @@
                         }
                     }
                 </script>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+
+@endsection
