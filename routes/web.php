@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\MuridController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,9 +71,13 @@ Route::middleware('role:guru')->group(function () {
         return view('guru.presensi.presensi');
     })->name('guru.presensi.presensi');
 
-    Route::get('/guru/profil', function () {
-        return view('guru.profil.profil');
-    })->name('guru.profil.profil');
+    // Route::get('/guru/profil', function () {
+    //     return view('guru.profil.profil');
+    // })->name('guru.profil.profil');
+
+    Route::get('/guru/profil', [GuruController::class, 'profil'])->name('guru.profil.profil');
+    Route::post('/guru/update-umum', [GuruController::class, 'updateUmum'])->name('guru.update.umum');
+    Route::post('/guru/update-pribadi', [GuruController::class, 'updatePribadi'])->name('guru.update.pribadi');
 });
 
 // login
