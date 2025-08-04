@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SIM-P - Presensi Staff</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  .checked-in {
-    background-color: #16a34a; /* green-600 */
-    color: white;
-    border-radius: 9999px;
-  }
-</style>
-</head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-  <!-- Sidebar + Navbar Container -->
-  <div class="flex flex-1 overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="hidden md:flex md:flex-col w-64 bg-white border-r border-gray-200">
-      <div class="flex items-center justify-center h-24 px-4 border-b border-gray-200">
-        <img src="https://placehold.co/150x50?text=Logo" alt="Logo" class="h-12" />
-      </div>
-      <nav class="flex-1 px-2 py-4 space-y-1">
-        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900 bg-gray-100">
-          <svg class="mr-3 h-6 w-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4"></path><path d="M12 20c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"></path></svg>
-          Presensi Staff
-        </a>
-        <!-- Tambah menu lain jika perlu -->
-      </nav>
-    </aside>
+@extends('staff.layouts.app')
 
-    <!-- Main Content -->
+@section('title', 'Dashboard - SIM-P')
+
+@section('content')
+
+<!-- Main Content -->
     <div class="flex flex-col flex-1 overflow-hidden">
       <!-- Navbar -->
       <header class="flex items-center justify-between bg-white border-b border-gray-200 px-4 py-3">
@@ -193,5 +167,5 @@
   updateButtonState();
   renderCalendar(currentMonth, currentYear);
 </script>
-</body>
-</html>
+
+@endsection

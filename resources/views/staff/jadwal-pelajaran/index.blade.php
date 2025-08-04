@@ -1,125 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIM-P - Data Mata Pelajaran</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .sidebar-link:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-        .sidebar-link.active {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-left: 4px solid #3b82f6;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
-<body class="bg-gray-50">
-    <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <div class="hidden md:flex md:flex-shrink-0">
-            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
-                <div class="flex items-center justify-center h-24 px-4 text-white">
-                    <div class="flex items-center px-4 py-6 border-b border-gray-200">
-                        <img src="{{ asset('img/JADWAL.jpg') }}" alt="Logo" class="w-[212px] h-[69px]">
-                    </div>
-                </div>
-                <div class="flex flex-col flex-grow overflow-y-auto">
-                    <div class="px-4 py-6">                
-                        <!-- Menu Items -->
-                        <nav class="space-y-1">
-                            <a href="/staff/dashboard" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-tachometer-alt mr-3 text-blue-500"></i>
-                                Dashboard
-                            </a>
-                            
-                            <a href="/staff/data-siswa" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link active">
-                                <i class="fas fa-users mr-3 text-blue-500"></i>
-                                Data Siswa
-                            </a>
-                            
-                            <a href="/staff/data-guru" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>
-                                Data Guru
-                            </a>
-                            
-                            <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-book-open mr-3 text-blue-500"></i>
-                                Mata Pelajaran
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-calendar-alt mr-3 text-blue-500"></i>
-                                Jadwal Pelajaran
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-file-invoice-dollar mr-3 text-blue-500"></i>
-                                Tagihan Siswa
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-envelope mr-3 text-blue-500"></i>
-                                Surat Masuk/Keluar
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-warehouse mr-3 text-blue-500"></i>
-                                Inventaris Sekolah
-                            </a>
-                            
-                            <a href="#" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
-                                <i class="fas fa-fingerprint mr-3 text-blue-500"></i>
-                                Presensi Staff
-                            </a>
-                        </nav>
-                    </div>
-                </div>
+@extends('staff.layouts.app')
 
-                <!-- Bottom Profile -->
-                <div class="p-4 border-t border-gray-200">
-                    <a href="#" class="flex items-center px-2 py-2 text-sm font-medium rounded-md sidebar-link">
-                        <i class="fas fa-user-circle mr-3 text-blue-500"></i>
-                        Profil
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="content flex-1 flex flex-col overflow-hidden">
-            <!-- Top Navigation -->
-            <div class="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-                <div class="flex items-center">
-                    <button id="mobileToggleSidebar" class="p-2 mr-2 rounded-lg hover:bg-gray-100 md:hidden">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 id="pageTitle" class="text-xl font-semibold text-gray-800">Jadwal Pelajaran Siswa</h1>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button class="p-2 rounded-full hover:bg-gray-100 relative">
-                        <i class="fas fa-bell text-gray-500"></i>
-                    </button>
-                    <div class="flex items-center mb-1">
-                        <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/100x100" alt="Foto profil staff TU dengan jas formal">
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-700">Staff TU</p>
-                            <p class="text-xs text-gray-500">Bagian Administrasi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Content Area -->
+@section('title', 'Dashboard - SIM-P')
+
+@section('content')
+
+<!-- Content Area -->
             <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
                 <!-- Header and Actions -->
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
@@ -175,7 +60,7 @@
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
-                        
+
                         <div class="mt-4">
                             <form id="jadwalForm">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -250,7 +135,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="mt-4">
                 <form id="mataPelajaranForm">
                     <input type="hidden" id="mataPelajaranId">
@@ -341,7 +226,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="mt-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -391,7 +276,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <div class="mt-4">
                 <p>Apakah Anda yakin ingin menghapus mata pelajaran ini?</p>
                 <div class="mt-6 flex justify-end space-x-3">
@@ -422,7 +307,7 @@
             },
             {
                 id: 2,
-                hari: 'Senin',  
+                hari: 'Senin',
                 jam: '08.30-10.00',
                 kelas: 'X IPA',
                 mapel: 'Fisika',
@@ -490,7 +375,7 @@
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             renderJadwal();
-            
+
             // Filter jadwal by class
             document.getElementById('filterKelasJadwal').addEventListener('change', function() {
                 renderJadwal(this.value);
@@ -547,7 +432,7 @@
                         <div class="text-sm font-medium text-gray-900">${matpel.nama}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                             ${matpel.kurikulum === '2013' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}">
                             ${matpel.kurikulum === '2013' ? 'K13' : 'Merdeka'}
                         </span>
@@ -578,18 +463,18 @@
 
             const filteredData = mataPelajaranData.filter(matpel => {
                 // Search filter
-                const matchesSearch = matpel.kode.toLowerCase().includes(searchTerm) || 
+                const matchesSearch = matpel.kode.toLowerCase().includes(searchTerm) ||
                                     matpel.nama.toLowerCase().includes(searchTerm);
-                
+
                 // Kurikulum filter
                 const matchesKurikulum = kurikulumFilter ? matpel.kurikulum === kurikulumFilter : true;
-                
+
                 // Kelas filter
                 let matchesKelas = true;
                 if (kelasFilter) {
                     matchesKelas = matpel.kelas.some(kelas => kelas.includes(kelasFilter));
                 }
-                
+
                 // Jurusan filter
                 let matchesJurusan = true;
                 if (jurusanFilter) {
@@ -607,12 +492,12 @@
             document.getElementById('modalTitle').textContent = 'Tambah Mata Pelajaran';
             document.getElementById('mataPelajaranForm').reset();
             document.getElementById('mataPelajaranId').value = '';
-            
+
             // Uncheck all kelas checkboxes
             document.querySelectorAll('.kelas-checkbox').forEach(checkbox => {
                 checkbox.checked = false;
             });
-            
+
             openModal('tambahMataPelajaranModal');
         }
 
@@ -626,7 +511,7 @@
             document.getElementById('detailKurikulum').textContent = matpel.kurikulum === '2013' ? 'Kurikulum 2013' : 'Kurikulum Merdeka';
             document.getElementById('detailJumlahJam').textContent = matpel.jumlahJam + ' jam/minggu';
             document.getElementById('detailDeskripsi').textContent = matpel.deskripsi || '-';
-            
+
             // Set kelas
             const kelasContainer = document.getElementById('detailKelas');
             kelasContainer.innerHTML = '';
@@ -652,7 +537,7 @@
             document.getElementById('kurikulum').value = matpel.kurikulum;
             document.getElementById('jumlahJam').value = matpel.jumlahJam;
             document.getElementById('deskripsi').value = matpel.deskripsi || '';
-            
+
             // Set kelas checkboxes
             document.querySelectorAll('.kelas-checkbox').forEach(checkbox => {
                 checkbox.checked = matpel.kelas.includes(checkbox.value);
@@ -665,12 +550,12 @@
         function saveMataPelajaran() {
             const id = document.getElementById('mataPelajaranId').value;
             const isEdit = !!id;
-            
+
             const kelas = [];
             document.querySelectorAll('.kelas-checkbox:checked').forEach(checkbox => {
                 kelas.push(checkbox.value);
             });
-            
+
             const matpelData = {
                 kode: document.getElementById('kode').value,
                 nama: document.getElementById('nama').value,
@@ -679,7 +564,7 @@
                 deskripsi: document.getElementById('deskripsi').value,
                 kelas: kelas
             };
-            
+
             if (isEdit) {
                 // Update existing data
                 const index = mataPelajaranData.findIndex(m => m.id === parseInt(id));
@@ -689,7 +574,7 @@
                 const newId = mataPelajaranData.length > 0 ? Math.max(...mataPelajaranData.map(m => m.id)) + 1 : 1;
                 mataPelajaranData.push({ id: newId, ...matpelData });
             }
-            
+
             closeModal('tambahMataPelajaranModal');
             renderMataPelajaran();
             alert(`Data mata pelajaran berhasil ${isEdit ? 'diperbarui' : 'ditambahkan'}`);
@@ -698,16 +583,16 @@
         // Confirm delete
         function confirmDelete(id) {
             const confirmBtn = document.getElementById('confirmDeleteBtn');
-            
+
             // Remove previous event listener
             confirmBtn.onclick = null;
-            
+
             // Add new event listener
             confirmBtn.onclick = function() {
                 deleteMataPelajaran(id);
                 closeModal('confirmDeleteModal');
             };
-            
+
             openModal('confirmDeleteModal');
         }
 
@@ -736,7 +621,7 @@
             const tbody = document.getElementById('jadwalTableBody');
             tbody.innerHTML = '';
 
-            const filteredJadwal = filterKelas ? 
+            const filteredJadwal = filterKelas ?
                 jadwalPelajaranData.filter(j => j.kelas === filterKelas) :
                 jadwalPelajaranData;
 
@@ -782,14 +667,14 @@
         function editJadwal(id) {
             const jadwal = jadwalPelajaranData.find(j => j.id === id);
             if (!jadwal) return;
-            
+
             document.getElementById('modalTitleJadwal').textContent = 'Edit Jadwal Pelajaran';
             document.getElementById('hari').value = jadwal.hari;
             document.getElementById('jam').value = jadwal.jam;
             document.getElementById('kelas').value = jadwal.kelas;
             document.getElementById('mapel').value = jadwal.mapel;
             document.getElementById('guru').value = jadwal.guru;
-            
+
             openModal('tambahJadwalModal');
         }
 
@@ -803,5 +688,5 @@
             });
         }
     </script>
-</body>
-</html>
+
+@endsection

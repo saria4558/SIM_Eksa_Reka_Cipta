@@ -22,7 +22,7 @@ Route::middleware('role:staff')->group(function () {
     Route::get('/staff/surat', function () {return view('staff.surat.index');})->name('staff.surat.index');
     Route::get('/staff/ijazah', function () {return view('staff.ijazah.index');})->name('staff.ijazah.index');
     Route::get('/staff/inventaris', function () {return view('staff.inventaris.index');})->name('staff.inventaris.index');
-    Route::get('/staff/absen', function () {return view('staff.presensi.index');})->name('staff.presensi.index');
+    Route::get('/staff/presensi', function () {return view('staff.presensi.index');})->name('staff.presensi.index');
     Route::get('/staff/profil', function () {return view('staff.profil.index');})->name('staff.profil.index');
 });
 
