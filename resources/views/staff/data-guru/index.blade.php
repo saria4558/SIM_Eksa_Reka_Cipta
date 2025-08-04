@@ -51,6 +51,11 @@
                                 <i class="fas fa-chalkboard-teacher mr-3 text-blue-500"></i>
                                 Data Guru
                             </a>
+
+                            <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
+                                <i class="fas fa-address-card mr-3 text-blue-500"></i>
+                                Ijazah
+                            </a>
                             
                             <a href="/staff/data-mapel" class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link">
                                 <i class="fas fa-book-open mr-3 text-blue-500"></i>

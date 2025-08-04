@@ -13,9 +13,17 @@ class Staff extends Model
         'user_id',
         'nama',
         'nip',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jk',
+        'agama',
         'jabatan',
+        'status',
         'alamat',
-        'jenis_kelamin',
+        'no_hp',
+        'email_kantor',
+        'pendidikan_terakhir',
+        'foto',
     ];
 
     public function user(): BelongsTo

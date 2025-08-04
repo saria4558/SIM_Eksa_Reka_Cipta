@@ -322,56 +322,7 @@
                                 <img id="detailFoto" src="https://placehold.co/150x200" alt="Foto siswa" 
                                     class="h-40 w-32 object-cover rounded-md border border-gray-200">
                             </div>
-                            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <p class="text-sm text-gray-500">NIS</p>
-                                    <p id="detailNis" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">NISN</p>
-                                    <p id="detailNisn" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Nama Lengkap</p>
-                                    <p id="detailNama" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Jenis Kelamin</p>
-                                    <p id="detailJenisKelamin" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Kelas</p>
-                                    <p id="detailKelas" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Jurusan</p>
-                                    <p id="detailJurusan" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Tempat, Tanggal Lahir</p>
-                                    <p id="detailTtl" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Agama</p>
-                                    <p id="detailAgama" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Alamat</p>
-                                    <p id="detailAlamat" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">No. Telepon</p>
-                                    <p id="detailTelepon" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Email</p>
-                                    <p id="detailEmail" class="font-medium text-gray-800">-</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-gray-500">Status</p>
-                                    <p id="detailStatus" class="font-medium text-gray-800">-</p>
-                                </div>
-                            </div>
+                            c
                         </div>
 
                         <div class="mt-6 flex justify-end">

@@ -13,18 +13,44 @@ return new class extends Migration
     {
         Schema::create('murids', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('nis')->unique();
+            $table->string('nisn')->unique();
             $table->string('nama');
-            $table->string('nis')->unique(); // Nomor Induk Siswa
-            $table->string('nisn')->unique(); // Nomor Induk Siswa Nasional
-            $table->string('jk'); // L/P
-            $table->date('tanggal_lahir');
+            $table->enum('jk', ['L', 'P']);
             $table->string('tempat_lahir');
-            $table->string('alamat');
-            $table->string('kelas'); // misal X IPA 2
-            $table->string('nama_ortu');
-            $table->string('no_hp_ortu');
+            $table->date('tanggal_lahir');
+            $table->string('agama');
+            $table->text('alamat');
+            $table->string('telepon')->nullable();
+            $table->string('email')->nullable();
+            
+            $table->string('kelas'); // contoh: X IPA 1
+            $table->string('jurusan'); // contoh: IPA, IPS, RPL
+            $table->year('tahun_masuk');
+            $table->enum('status', ['aktif', 'alumni', 'pindah', 'dikeluarkan'])->default('aktif');
+
+            // Data Orang Tua
+            $table->string('nama_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('pekerjaan_ayah')->nullable();
+            $table->string('pekerjaan_ibu')->nullable();
+            $table->string('telepon_ortu')->nullable();
+            $table->text('alamat_ortu')->nullable();
+
+            // Data Wali (opsional)
+            $table->string('nama_wali')->nullable();
+            $table->string('hubungan_wali')->nullable();
+            $table->string('pekerjaan_wali')->nullable();
+
+            // Data Lain
+            $table->string('foto')->nullable();
+            $table->string('no_kip')->nullable();
+            $table->string('golongan_darah')->nullable();
+            $table->text('catatan_kesehatan')->nullable();
+            $table->text('catatan_prestasi')->nullable();
+            $table->text('catatan_pelanggaran')->nullable();
+
             $table->timestamps();
         });
     }

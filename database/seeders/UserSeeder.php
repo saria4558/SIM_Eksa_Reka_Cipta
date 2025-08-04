@@ -48,13 +48,17 @@ class UserSeeder extends Seeder
             'nis' => '20230101',
             'nisn' => '9988776655',
             'kelas' => 'XII IPA 1',
-            'jk' => 'Perempuan',
+            'jurusan' => 'IPA',
+            'tahun_masuk' => 2021,
+            'status' => 'aktif',
+            'jk' => 'P',
             'tanggal_lahir' => '2004-06-25',
             'tempat_lahir' => 'Banyuwangi',
+            'agama' => 'Islam',
             'alamat' => 'Jl. Pelajar No.2',
-            'nama_ortu'=> 'Ibu Ortu',
-            'no_hp_ortu' => '089876543210',
-
+            'nama_ayah' => 'Pak Budi',
+            'nama_ibu' => 'Bu Ani',
+            'telepon_ortu' => '089876543210',
         ]);
 
         // Kepsek
