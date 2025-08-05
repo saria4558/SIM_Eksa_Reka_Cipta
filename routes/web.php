@@ -55,34 +55,17 @@ Route::middleware('role:murid')->group(function () {
 
 // guru
 Route::middleware('role:guru')->group(function () {
-    Route::get('/guru/dashboard', function () {
-        return view('guru.dashboard.dashboard');
-    })->name('guru.dashboard.dashboard');
-
-    Route::get('/guru/jadwal', function () {
-        return view('guru.jadwal.jadwal');
-    })->name('guru.jadwal.jadwal');
-
-    Route::get('/guru/kelas', function () {
-        return view('guru.kelas.kelas');
-    })->name('guru.kelas.kelas');
-
-    Route::get('/guru/presensi', function () {
-        return view('guru.presensi.presensi');
-    })->name('guru.presensi.presensi');
-
-    // Route::get('/guru/profil', function () {
-    //     return view('guru.profil.profil');
-    // })->name('guru.profil.profil');
-
+    Route::get('/guru/dashboard', [GuruController::class, 'headerDashboard'])->name('guru.dashboard.dashboard');
+    Route::get('/guru/jadwal', [GuruController::class, 'headerJadwal'])->name('guru.jadwal.jadwal');
+    Route::get('/guru/kelas', [GuruController::class, 'headerKelas'])->name('guru.kelas.kelas');
+    Route::get('/guru/presensi', [GuruController::class, 'headerPresensi'])->name('guru.presensi.presensi');
     Route::get('/guru/profil', [GuruController::class, 'profil'])->name('guru.profil.profil');
     Route::post('/guru/update-umum', [GuruController::class, 'updateUmum'])->name('guru.update.umum');
     Route::post('/guru/update-pribadi', [GuruController::class, 'updatePribadi'])->name('guru.update.pribadi');
 });
-
 // login
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

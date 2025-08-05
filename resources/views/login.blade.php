@@ -21,10 +21,15 @@
   </script>
 </head>
 <body class="flex h-screen bg-gray-100 font-sans">
-    <div class="w-1/2 hidden md:flex items-center justify-center bg-cover bg-center relative"
-        style="background-image: url('{{ asset('images/anak-sma.png') }}');">
+  @if(session('session_expired'))
+    <script>
+      alert('Sesi Anda telah berakhir. Silakan login kembali.');
+    </script>
+  @endif
+  <div class="w-1/2 hidden md:flex items-center justify-center bg-cover bg-center relative"
+    style="background-image: url('{{ asset('images/anak-sma.png') }}');">
     <div class="absolute inset-0 bg-[#2C415E] opacity-70"></div>
-    </div>
+  </div>
 
   <!-- Bagian Kanan: Form Login -->
   <div class="w-full md:w-1/2 bg-white flex items-center justify-center">

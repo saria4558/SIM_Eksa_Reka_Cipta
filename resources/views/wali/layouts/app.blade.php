@@ -22,6 +22,17 @@
   </script>
 </head>
 <body class="bg-gray-50">
+@if(session('session_expired'))
+  <div id="sessionModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
+      <h2 class="text-lg font-semibold mb-4 text-red-600">Sesi Berakhir</h2>
+      <p class="mb-4">Sesi Anda telah berakhir. Silakan login kembali.</p>
+      <a href="{{ route('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Login Ulang
+      </a>
+    </div>
+  </div>
+@endif
   <div class="flex h-screen overflow-hidden">
     {{-- Sidebar --}}
     @include('wali.partials.sidebar')

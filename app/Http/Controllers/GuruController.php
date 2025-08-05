@@ -15,7 +15,26 @@ class GuruController extends Controller
         $guru = Guru::with('user')->where('user_id', Auth::id())->first();
         return view('guru.profil.profil', compact('guru'));
     }
-
+    public function headerPresensi()
+    {
+        $guru = Guru::with('user')->where('user_id', Auth::id())->first();
+        return view('guru.presensi.presensi', compact('guru'));
+    }
+    public function headerJadwal()
+    {
+        $guru = Guru::with('user')->where('user_id', Auth::id())->first();
+        return view('guru.jadwal.jadwal', compact('guru'));
+    }
+    public function headerKelas()
+    {
+        $guru = Guru::with('user')->where('user_id', Auth::id())->first();
+        return view('guru.kelas.kelas', compact('guru'));
+    }
+    public function headerDashboard()
+    {
+        $guru = Guru::with('user')->where('user_id', Auth::id())->first();
+        return view('guru.dashboard.dashboard', compact('guru'));
+    }
     // Update data umum
     public function updateUmum(Request $request)
     {

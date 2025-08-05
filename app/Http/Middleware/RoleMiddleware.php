@@ -5,16 +5,23 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth; // ✅ Tambahkan ini
+use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if (Auth::check() && Auth::user()->role === $role) {
+        //  Kalau belum login (session habis), redirect ke login
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('session_expired', true);
+        }
+
+        //  Kalau sudah login, baru cek role-nya
+        if (Auth::user()->role === $role) {
             return $next($request);
         }
 
-        abort(403, 'Unauthorized');
+        //  Role tidak sesuai, tolak akses
+        abort(403, 'tidak diizinkan mengakses halaman ini');
     }
 }

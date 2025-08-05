@@ -13,10 +13,10 @@
     </div>
 
     <div class="flex items-center mb-2 mr-6">
-      <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('images/guru/profil.png') }}" alt="Foto profil">
+      <img class="h-10 w-10 rounded-full object-cover" src="{{asset('storage/'. $guru->user->foto) }}" alt="Foto profil">
       <div class="ml-3">
-        <p class="text-sm font-medium text-gray-700">Erna</p>
-        <p class="text-xs text-gray-500">Guru Matematika</p>
+        <p class="text-sm font-medium text-gray-700">{{ $guru->nama }}</p>
+        <p class="text-xs text-gray-500">Guru {{ $guru->mapel }}</p>
       </div>
     </div>
   </div>
