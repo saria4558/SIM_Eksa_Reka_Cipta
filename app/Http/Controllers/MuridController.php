@@ -179,6 +179,7 @@ class MuridController extends Controller
     }
 
 
+
     //update more info
     public function moreInfo(Request $request)
     {
@@ -205,8 +206,6 @@ class MuridController extends Controller
         $murid->save();
         return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
-
-
     public function index()
     {
         $murids = Murid::orderBy('kelas')->get();
