@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('agama');
             $table->text('alamat');
             $table->string('telepon')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->nullable(); //email ini udh ada di users
             
             $table->string('kelas'); // contoh: X IPA 1
             $table->string('jurusan'); // contoh: IPA, IPS, RPL
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('pekerjaan_wali')->nullable();
 
             // Data Lain
-            $table->string('foto')->nullable();
+            $table->string('foto')->nullable(); //foto udh ada di tabel users
             $table->string('no_kip')->nullable();
             $table->string('golongan_darah')->nullable();
             $table->text('catatan_kesehatan')->nullable();
