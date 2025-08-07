@@ -177,8 +177,34 @@ class MuridController extends Controller
         $murid->save();
         return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
-    //update more info
 
+
+    //update more info
+    public function moreInfo(Request $request)
+    {
+        $murid = Murid::where('user_id', Auth::id())->first();
+        $request->validate([
+            'nama_wali'=> 'required|string|max:255',
+            'hubungan_wali'=> 'required|string|max:225',
+            'pekerjaan_wali'=> 'required|string|max:225',
+            'no_kip'=>'required|string|max:225',
+            'golongan_darah'=>'required|string|max:225',
+            'catatan_kesehatan'=>'required|string|max:1000',
+            'catatan_prestasi'=>'required|string|max:1000',
+            'catatan_pelanggaran'=>'required|string|max:1000',
+        ]);
+
+        $murid->nama_wali = $request->nama_wali;
+        $murid->hubungan_wali = $request->hubungan_wali;
+        $murid->pekerjaan_wali = $request->pekerjaan_wali;
+        $murid->no_kip = $request->no_kip;
+        $murid->golongan_darah = $request->golongan_darah;
+        $murid->catatan_kesehatan = $request->catatan_kesehatan;
+        $murid->catatan_prestasi = $request->catatan_prestasi;
+        $murid->catatan_pelanggaran = $request->catatan_pelanggaran;
+        $murid->save();
+        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
+    }
 
     public function index()
     {

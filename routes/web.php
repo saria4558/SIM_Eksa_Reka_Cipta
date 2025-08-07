@@ -51,6 +51,8 @@ Route::middleware('role:murid')->group(function () {
     Route::post('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
     Route::post('/wali/update-parents', [MuridController::class, 'parentsInfo'])->name('murid.update.parents');
 
+    Route::post('/wali/update-more', [MuridController::class, 'moreInfo'])->name('murid.update.more');
+    
 
     Route::get('/wali/tagihan', function () {
         return view('wali.tagihan.tagihan');
