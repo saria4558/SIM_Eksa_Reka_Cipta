@@ -206,6 +206,7 @@ class MuridController extends Controller
         return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
 
+
     public function index()
     {
         $murids = Murid::orderBy('kelas')->get();
