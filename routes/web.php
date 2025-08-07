@@ -43,10 +43,12 @@ Route::middleware('role:murid')->group(function () {
     Route::get('/wali/presensi', function () {
         return view('wali.presensi.presensi');
     })->name('wali.presensi.presensi');
-
-    Route::get('/wali/profil', function () {
-        return view('wali.profil.profil');
-    })->name('wali.profil.profil');
+    
+    Route::get('/wali/profil', [MuridController::class, 'profil'])->name('wali.profil.profil');
+    Route::post('/wali/update-umum', [MuridController::class, 'updateUmum'])->name('murid.update.umum');
+    Route::post('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
+    Route::post('/wali/update-parents', [MuridController::class, 'parentsInfo'])->name('murid.update.parents');
+    
 
     Route::get('/wali/tagihan', function () {
         return view('wali.tagihan.tagihan');

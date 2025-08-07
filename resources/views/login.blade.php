@@ -49,7 +49,7 @@
         <div class="mb-4">
           <label class="block text-gray-700 text-base font-semibold mb-1" for="username">Username</label>
           <input class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                 name="username" id="username" type="text" placeholder="Username/Email" />
+                 name="username" id="username" type="text" placeholder="Username" />
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-base font-semibold mb-1" for="password">Password</label>

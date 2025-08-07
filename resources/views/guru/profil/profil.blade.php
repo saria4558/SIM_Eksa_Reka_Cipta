@@ -49,7 +49,7 @@
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Tempat, Tanggal Lahir</p>
-    <p class="text-sm text-gray-800 font-medium">{{ $guru->tempat_lahir }}, {{ $guru->tanggal_lahir }}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->tempat_lahir }}, {{ \Carbon\Carbon::parse($guru->tanggal_lahir)->isoFormat('D MMMM Y') }}</p>
   </div>
   <div>
     <p class="text-xs text-gray-500">Jenis Kelamin</p>
