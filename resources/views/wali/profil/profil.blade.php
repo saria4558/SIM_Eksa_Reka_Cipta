@@ -321,7 +321,7 @@
 <div id="modal-parents" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
   <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg relative">
     <div class="flex justify-between items-center mb-4">
-      <h3 class="text-sm font-semibold">Edit Informasi Pribadi</h3>
+      <h3 class="text-sm font-semibold">Edit Informasi Orang Tua</h3>
       <button id="close-parents-popup" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
     </div>
     {{-- isian detail pribadi --}}
@@ -367,7 +367,7 @@
 <div id="modal-more" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
   <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg relative">
     <div class="flex justify-between items-center mb-4">
-      <h3 class="text-sm font-semibold">Edit Informasi Pribadi</h3>
+      <h3 class="text-sm font-semibold">Edit Informasi Lainnya</h3>
       <button id="close-more-popup" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
     </div>
     {{-- isian detail pribadi --}}
@@ -457,11 +457,4 @@ document.addEventListener('DOMContentLoaded', () => {
   modalMore.addEventListener('click', e => { if(e.target===modalMore) modalMore.classList.add('hidden'); });
 });
 </script>
-
-
-
-
-
-
-
 @endsection
