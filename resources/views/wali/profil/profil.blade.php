@@ -52,7 +52,7 @@
   </div>
   <div>
     <p class="text-xs text-gray-500">Jenis Kelamin</p>
-    <p class="text-sm text-gray-800 font-medium">{{$murid->jk}}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $murid->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</p>
   </div>
   <div>
     <p class="text-xs text-gray-500">Alamat</p>
@@ -131,36 +131,36 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Nama Wali</p>
-    <p class="text-sm text-gray-800 font-medium">Keiichiro Asaka</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->nama_wali}}</p>
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Hubungan Wali</p>
-    <p class="text-sm text-gray-800 font-medium">1234567897235373</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->hubungan_wali}}</p>
   </div>
     <div class="space-y-1">
     <p class="text-xs text-gray-500">Pekerjaan Wali</p>
-    <p class="text-sm text-gray-800 font-medium">1234567897235373</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->pekerjaan_wali}}</p>
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">nomor KIP</p>
-    <p class="text-sm text-gray-800 font-medium">088888888888</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->no_kip}}</p>
   </div>
 
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Golongan Darah</p>
-    <p class="text-sm text-gray-800 font-medium">Banyuwangi, 25 Juni 2004</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->golongan_darah}}</p>
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Catatan Kesehatan</p>
-    <p class="text-sm text-gray-800 font-medium">Banyuwangi, 25 Juni 2004</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_kesehatan}}</p>
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Catatan Prestasi</p>
-    <p class="text-sm text-gray-800 font-medium">Banyuwangi, 25 Juni 2004</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_prestasi}}</p>
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Catatan Pelanggaran</p>
-    <p class="text-sm text-gray-800 font-medium">Banyuwangi, 25 Juni 2004</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_pelanggaran}}</p>
   </div>
 </div>
 </div>
@@ -246,7 +246,7 @@
         </div>
          <div>
           <label class="text-xs text-gray-600">Tanggal Lahir</label>
-          <input type="text" name="tanggal_lahir" value="{{old('tanggal_lahir', $murid->tanggal_lahir)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="date" name="tanggal_lahir" value="{{old('tanggal_lahir', $murid->tanggal_lahir)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
           <label class="text-xs text-gray-600">Agama</label>
@@ -254,7 +254,7 @@
         </div>
         <div>
           <label class="text-xs text-gray-500">Jenis Kelamin</label>
-          <input type="text" name="jk" value="{{old('jk', $murid->jk)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+          <input type="text" name="jk" value="{{old('jk', $murid->jk == 'L' ? 'Laki-Laki' : 'Perempuan')}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         <div>
           <label class="text-xs text-gray-600">Alamat</label>
@@ -266,7 +266,7 @@
         </div>
         <div>
           <label class="text-xs text-gray-500">Jurusan</label>
-          <input type="text" name="jurusan" value="{{old('jurusan', $murid->jurusan)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly">
+          <input type="text" name="jurusan" value="{{old('jurusan', $murid->jurusan)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         <div>
           <label class="text-xs text-gray-500">Tahun Masuk</label>
@@ -274,7 +274,7 @@
         </div>
         <div>
           <label class="text-xs text-gray-500">Status</label>
-          <input type="text" name="status" value="{{old('status', $murid->status)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly">
+          <input type="text" name="status" value="{{old('status', $murid->status)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         {{-- <div>
           <label class="text-xs text-gray-600">Status</label>
@@ -371,40 +371,41 @@
       <button id="close-more-popup" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
     </div>
     {{-- isian detail pribadi --}}
-    <form class="space-y-4">
+    <form action="{{route('murid.update.more')}}" method="POST" class="space-y-4">
+      @csrf
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="text-xs text-gray-600">Nama Wali</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="nama_wali" value="{{old('nama_wali', $murid->nama_wali)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
           <label class="text-xs text-gray-600">Hubungan Wali</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="hubungan_wali" value="{{old('hubungan_wali', $murid->hubungan_wali)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
           <label class="text-xs text-gray-600">Pekerjaan Wali</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="pekerjaan_wali" value="{{old('pekerjaan_wali', $murid->pekerjaan_wali)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
           <label class="text-xs text-gray-600">Nomor KIP</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="no_kip" value="{{old('no_kip', $murid->no_kip)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
 
         <div>
           <label class="text-xs text-gray-600">Golongan Darah</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="golongan_darah" value="{{old('golongan_darah', $murid->golongan_darah)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
           <label class="text-xs text-gray-600">Catatan Kesehatan</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="catatan_kesehatan" value="{{old('catatan_kesehatan', $murid->catatan_kesehatan)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         <div>
           <label class="text-xs text-gray-600">Catatan Prestasi</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="catatan_prestasi" value="{{old('catatan_prestasi', $murid->catatan_prestasi)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         <div>
           <label class="text-xs text-gray-600">Catatan Pelanggaran</label>
-          <input type="text" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="catatan_pelanggaran" value="{{old('catatan_pelanggaran', $murid->catatan_pelanggaran)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
 
       </div>
