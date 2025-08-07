@@ -42,7 +42,7 @@
     <p class="text-xs text-gray-500">Mata Pelajaran</p>
     <p class="text-sm text-gray-800 font-medium">{{ $guru->mapel }}</p>
   </div>
-  
+
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Telepon</p>
     <p class="text-sm text-gray-800 font-medium">{{ $guru->no_hp }}</p>
@@ -178,4 +178,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 @endsection
-    

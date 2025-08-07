@@ -68,16 +68,14 @@
                         {{ Request::is('staff/presensi') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
                         <i class="fas fa-fingerprint min-w-[30px]"></i> Presensi Staff
                     </a>
+
+                    <a href="/staff/profil"
+                        class="flex items-center px-2 py-3 text-sm font-medium rounded-md sidebar-link
+                        {{ Request::is('staff/profil') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                        <i class="fas fa-user-circle min-w-[30px]"></i> Profil
+                    </a>
                 </nav>
             </div>
-        </div>
-
-        <!-- Bottom Profile -->
-        <div class="p-4 border-t border-gray-200">
-            <a href="/staff/profil" class="flex items-center px-2 py-2 text-sm font-medium rounded-md sidebar-link {{ request()->routeIs('staff.profil') ? 'active' : '' }}">
-                <i class="fas fa-user-circle mr-3 text-blue-500"></i>
-                Profil
-            </a>
         </div>
     </div>
 </div>

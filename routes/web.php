@@ -12,9 +12,9 @@ Route::get('/', function () {
 // Route untuk dashboard staff
 Route::middleware('role:staff')->group(function () {
     Route::get('/staff/dashboard', function () {return view('staff.dashboard');})->name('staff.dashboard');
-    //Route::resource('staff/data-murid', MuridController::class)->names('staff.data-murid');
+    Route::resource('staff/data-murid', MuridController::class)->names('staff.data-murid');
 
-    Route::get('/staff/data-murid', function () {return view('staff.data-murid.index');})->name('staff.data-murid.index');
+    //Route::get('/staff/data-murid', function () {return view('staff.data-murid.index');})->name('staff.data-murid.index');
     Route::get('/staff/data-guru', function () {return view('staff.data-guru.index');})->name('staff.data-guru.index');
     Route::get('/staff/data-mapel', function () {return view('staff.mata-pelajaran.index');})->name('staff.mata-pelajaran.index');
     Route::get('/staff/jadwal-pelajaran', function () {return view('staff.jadwal-pelajaran.index');})->name('staff.jadwal-pelajaran.index');
