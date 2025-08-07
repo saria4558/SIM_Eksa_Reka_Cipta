@@ -153,33 +153,43 @@ class MuridController extends Controller
 
     //     return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     // }
-    
+
+    //update parents info
     //update parents info
     public function parentsInfo(Request $request)
     {
-        $murid = Murid::where('user_id', Auth::id())->first();
-        $request->validate([
-            'nama_ayah'=> 'required|string|max:255',
-            'nama_ibu' => 'required|string|max:225',
-            'pekerjaan_ayah'=>'required|string|max:225',
-            'pekerjaan_ibu'=> 'required|string|max:255',
-            'telepon_ortu' => 'required|string|max:225',
-            'alamat_ortu'=>'required|string|max:225',
-        ]);
+        try {
+            $murid = Murid::where('user_id', Auth::id())->first();
 
-        $murid->nama_ayah = $request->nama_ayah;
-        $murid->nama_ibu = $request->nama_ibu;
-        $murid->pekerjaan_ayah = $request->pekerjaan_ayah;
-        $murid->pekerjaan_ibu = $request->pekerjaan_ibu;
-        $murid->telepon_ortu = $request->telepon_ortu;
-        $murid->alamat_ortu = $request->alamat_ortu;
+            $request->validate([
+                'nama_ayah'=> 'required|string|max:255',
+                'nama_ibu' => 'required|string|max:255',
+                'pekerjaan_ayah'=>'required|string|max:255',
+                'pekerjaan_ibu'=> 'required|string|max:255',
+                'telepon_ortu' => 'required|string|max:20',
+                'alamat_ortu'=>'required|string|max:500',
+            ]);
 
-        $murid->save();
-        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
+            $murid->nama_ayah = $request->nama_ayah;
+            $murid->nama_ibu = $request->nama_ibu;
+            $murid->pekerjaan_ayah = $request->pekerjaan_ayah;
+            $murid->pekerjaan_ibu = $request->pekerjaan_ibu;
+            $murid->telepon_ortu = $request->telepon_ortu;
+            $murid->alamat_ortu = $request->alamat_ortu;
+
+            $murid->save();
+
+            return redirect()->route('wali.profil.profil')
+                ->with('success', 'Informasi orang tua berhasil diperbarui.');
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal', 'parents'); // untuk modal parents
+        }
     }
-    //update more info
 
-   
+
     public function index()
     {
         $murids = Murid::orderBy('kelas')->get();

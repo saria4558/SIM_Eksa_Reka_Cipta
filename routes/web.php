@@ -12,7 +12,9 @@ Route::get('/', function () {
 // Route untuk dashboard staff
 Route::middleware('role:staff')->group(function () {
     Route::get('/staff/dashboard', function () {return view('staff.dashboard');})->name('staff.dashboard');
-    Route::resource('staff/data-murid', MuridController::class)->names('staff.data-murid');
+    Route::resource('staff/data-murid', MuridController::class)
+    ->names('staff.data-murid')
+    ->parameters(['data-murid' => 'murid']);
 
     //Route::get('/staff/data-murid', function () {return view('staff.data-murid.index');})->name('staff.data-murid.index');
     Route::get('/staff/data-guru', function () {return view('staff.data-guru.index');})->name('staff.data-guru.index');
@@ -43,12 +45,12 @@ Route::middleware('role:murid')->group(function () {
     Route::get('/wali/presensi', function () {
         return view('wali.presensi.presensi');
     })->name('wali.presensi.presensi');
-    
+
     Route::get('/wali/profil', [MuridController::class, 'profil'])->name('wali.profil.profil');
     Route::post('/wali/update-umum', [MuridController::class, 'updateUmum'])->name('murid.update.umum');
     Route::post('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
     Route::post('/wali/update-parents', [MuridController::class, 'parentsInfo'])->name('murid.update.parents');
-    
+
 
     Route::get('/wali/tagihan', function () {
         return view('wali.tagihan.tagihan');
