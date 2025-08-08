@@ -12,8 +12,8 @@ class Murid2Seeder extends Seeder
     public function run(): void
     {
         $murid = User::create([
-            'username' => 'murid2',
-            'email' => 'murid2@example.com',
+            'username' => 'murid3',
+            'email' => 'murid3@example.com',
             'password' => Hash::make('password'),
             'role' => 'murid',
             'foto' => 'default.png'
@@ -21,9 +21,9 @@ class Murid2Seeder extends Seeder
 
         Murid::create([
             'user_id' => $murid->id,
-            'nama' => 'Ani Murid',
-            'nis' => '202301011',
-            'nisn' => '99887762655',
+            'nama' => 'Ani Murid 3',
+            'nis' => '202304011',
+            'nisn' => '994762655',
             'kelas' => 'XII IPS 2',
             'jurusan' => 'IPS',
             'tahun_masuk' => 2021,
@@ -35,7 +35,7 @@ class Murid2Seeder extends Seeder
             'alamat' => 'Jl. Pelajar No.2',
             'nama_ayah' => 'Pak Budi',
             'nama_ibu' => 'Bu Ani',
-            'telepon_ortu' => '0898276543210',
+            'telepon_ortu' => '08984543210',
         ]);
     }
 }

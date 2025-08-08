@@ -44,4 +44,9 @@ class Murid extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }
