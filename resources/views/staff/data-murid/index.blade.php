@@ -12,7 +12,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <h4 class="text-2xl font-bold">{{ $murids->where('status', 'aktif')->count() }}</h4>
-                        <p class="text-white">Murid Aktif  Tahun Ini</p>
+                        <p class="text-white">Murid Aktif Tahun Ini</p>
                     </div>
                     <i class="fas fa-user-graduate text-3xl text-blue-200"></i>
                 </div>
