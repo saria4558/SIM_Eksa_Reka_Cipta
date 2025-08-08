@@ -22,5 +22,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
         UserSeeder::class,
     ]);
+    $this->call([Murid2Seeder::class]);
+
+    $this->call([JadwalMapelSeeder::class]);
     }
+
+    
 }
