@@ -35,7 +35,18 @@
                             <a href="/staff/data-guru"
                                 class="flex items-center px-2 py-2 text-sm font-medium rounded-md
                                 {{ Request::is('staff/data-alumni') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
-                                <i class="fas fa-users min-w-[25px]"></i> Data Alumni                            </a>
+                                <i class="fas fa-users min-w-[25px]"></i> Data Alumni
+                            </a>
+                            <a href="/staff/catprestasi"
+                                class="flex items-center px-2 py-2 text-sm font-medium rounded-md
+                                {{ Request::is('staff/catprestasi') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                                <i class="fas fa-book min-w-[25px]"></i> Catatan Prestasi
+                            </a>
+                            <a href="/staff/catpelanggaran"
+                                class="flex items-center px-2 py-2 text-sm font-medium rounded-md
+                                {{ Request::is('staff/catpelanggaran') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                                <i class="fas fa-book min-w-[25px]"></i> Catatan Pelanggaran
+                            </a>
                         </div>
                     </div>
 
