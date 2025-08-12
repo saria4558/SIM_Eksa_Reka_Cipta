@@ -32,7 +32,11 @@ class Guru extends Model
         'pengalaman_mengajar',
         'pelatihan',
         'prestasi',
-        'status_aktif'
+        'status_aktif',
+        'npk',
+        'nik',
+        'nrg',
+        'peg_id',
     ];
 
     public function user(): BelongsTo
