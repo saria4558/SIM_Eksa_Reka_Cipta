@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\JadwalPelajaran;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 class GuruController extends Controller
 {
@@ -101,6 +103,7 @@ class GuruController extends Controller
 
         return redirect()->route('guru.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
+
 
 
     //perubahan dari eva

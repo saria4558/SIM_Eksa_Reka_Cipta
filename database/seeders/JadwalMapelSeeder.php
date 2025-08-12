@@ -33,6 +33,12 @@ class JadwalMapelSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 'guru',
         ]);
+        $userGuru3 = User::create([
+            'username' => 'Pak Bani',
+            'email' => 'guru3@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'guru',
+        ]);
 
         $guru = Guru::create([
             'user_id' => $userGuru->id,
@@ -44,7 +50,18 @@ class JadwalMapelSeeder extends Seeder
             'no_hp' => '081234567890',
             'tanggal_lahir' => '2004-06-25',
             'tempat_lahir' => 'Banyuwangi'
-
+      
+        ]);
+        $guru3 = Guru::create([
+            'user_id' => $userGuru3->id,
+            'nama' => 'Pak Bani',
+            'nip' => '198012312001',
+            'jk' => 'Laki - Laki',
+            'mapel' => 'Matematika',
+            'alamat' => 'Jl. Pendidikan No.1',
+            'no_hp' => '08123456780',
+            'tanggal_lahir' => '2004-06-25',
+            'tempat_lahir' => 'Banyuwangi'
             
         ]);
 
@@ -81,11 +98,16 @@ class JadwalMapelSeeder extends Seeder
             'nama_mapel' => 'Matematika',
             'guru_id' => $guru->id,
         ]);
+        $mapel3 = Mapel::create([
+            'nama_mapel' => 'Bahasa Indonesia',
+            'guru_id' => $guru3->id,
+        ]);
 
         // === 5. JADWAL PELAJARAN ===
         JadwalPelajaran::create([
             'kelas_id' => $kelas1A1->id,
             'mapel_id' => $mapel->id,
+            'guru_id'  => $mapel->guru_id,
             'hari' => 'Senin',
             'jam_mulai' => '07:00',
             'jam_selesai' => '08:30',
@@ -94,7 +116,25 @@ class JadwalMapelSeeder extends Seeder
         JadwalPelajaran::create([
             'kelas_id' => $kelas2A1->id,
             'mapel_id' => $mapel->id,
+            'guru_id'  => $mapel->guru_id,
             'hari' => 'Selasa',
+            'jam_mulai' => '09:00',
+            'jam_selesai' => '10:30',
+        ]);
+
+        JadwalPelajaran::create([
+            'kelas_id' => $kelas2A1->id,
+            'mapel_id' => $mapel->id,
+            'guru_id'  => $mapel->guru_id,
+            'hari' => 'Rabu',
+            'jam_mulai' => '09:00',
+            'jam_selesai' => '10:30',
+        ]);
+        JadwalPelajaran::create([
+            'kelas_id' => $kelas2A1->id,
+            'mapel_id' => $mapel3->id,
+            'guru_id'  => $mapel3->guru_id,
+            'hari' => 'Kamis',
             'jam_mulai' => '09:00',
             'jam_selesai' => '10:30',
         ]);

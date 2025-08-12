@@ -13,10 +13,11 @@ class Guru extends Model
         'user_id',
         'nama',
         'nip',
+        'jk',
         'mapel',
+        'tanggal_lahir',
+        'tempat_lahir',
         'alamat',
-        'jenis_kelamin',
-
         // Kolom tambahan dari migrasi baru
         'nuptk',
         'agama',
@@ -32,7 +33,8 @@ class Guru extends Model
         'pengalaman_mengajar',
         'pelatihan',
         'prestasi',
-        'status_aktif'
+        'status_aktif',
+        'no_hp'
     ];
 
     public function user(): BelongsTo

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 // use Illuminate\Support\Facades\Validator;
+
+use App\Models\JadwalPelajaran;
 use App\Models\Murid;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -108,52 +110,6 @@ class MuridController extends Controller
         }
     }
 
-
-    //update personal info
-    // public function personalInfo(Request $request)
-    // {
-    //     $murid = Murid::where('user_id', Auth::id())->first();
-    //     $user = $murid->user;
-
-    //     $request->validate([
-    //         'nama'=> 'required|string|max:255',
-    //         'nis' => 'required|string|max:10',
-    //         'nisn' => 'required|string|max:10',
-    //         'telepon' => 'required|string|max:20',
-    //         'tempat_lahir' => 'required|string|max:255',
-    //         'tanggal_lahir' => 'required|date',
-    //         'agama' => 'required|string|max:255',
-    //         // 'agama' => 'nullable|string|max:255',
-    //         'jk' => 'required|string',
-    //         'alamat' => 'required|string|max:255',
-    //         'kelas' => 'required|string|max:255',
-    //         'jurusan' => 'required|string|max:255',
-    //         'tahun_masuk' => 'required|string|max:255',
-    //         'status'=> 'required|string|max:10',
-    //         'email' => 'required|email|unique:users,email,' . $user->id,
-    //     ]);
-
-    //     $murid->nama = $request->nama;
-    //     $murid->nis = $request->nis;
-    //     $murid->nisn = $request->nisn;
-    //     $murid->telepon = $request->telepon;
-    //     $murid->tempat_lahir =$request->tempat_lahir;
-    //     $murid->tanggal_lahir = $request->tanggal_lahir;
-    //     $murid->agama = $request->agama;
-    //     $murid->jk = $request->jk;
-    //     $murid->alamat = $request->alamat;
-    //     $murid->kelas = $request->kelas;
-    //     $murid->jurusan = $request->jurusan;
-    //     $murid->tahun_masuk = $request->tahun_masuk;
-    //     $murid->status = $request->status;
-    //     $user->email = $request->email;
-
-    //     $murid->save();
-    //     $user->save();
-
-    //     return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
-    // }
-
     //update parents info
     public function parentsInfo(Request $request)
     {
@@ -216,6 +172,21 @@ class MuridController extends Controller
     {
         return view('staff.data-murid.create');
     }
+
+    public function jadwal()
+    {
+        $murid = Murid::where('user_id', Auth::id())->first();
+
+        $jadwal = JadwalPelajaran::where('kelas_id', $murid->kelas_id)
+            ->with(['mataPelajaran.guru', 'kelas'])
+            ->get();
+
+        return view('murid.jadwal', compact('jadwal'));
+    }
+
+
+
+
 
     public function store(Request $request)
     {
