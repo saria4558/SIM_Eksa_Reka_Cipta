@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('gurus', function (Blueprint $table) {
-            //
+            $table->string('npk')->nullable()->after('nuptk')->unique();
+            $table->string('nik')->nullable()->after('nama')->unique();
+            $table->string('nrg')->nullable()->after('npk')->unique();
+            $table->string('peg_id')->nullable()->after('user_id')->unique();
         });
     }
 
@@ -22,10 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('gurus', function (Blueprint $table) {
-            $table->string('npk')->nullable()->after('nuptk')->unique();
-            $table->string('nik')->nullable()->after('nama')->unique();
-            $table->string('nrg')->nullable()->after('npk')->unique();
-            $table->string('peg_id')->nullable()->after('user_id')->unique();
+            //
         });
     }
 };
