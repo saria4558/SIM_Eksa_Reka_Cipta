@@ -15,7 +15,7 @@ class Guru extends Model
         'nip',
         'mapel',
         'alamat',
-        'jenis_kelamin',
+        'jk',
 
         // Kolom tambahan dari migrasi baru
         'nuptk',
