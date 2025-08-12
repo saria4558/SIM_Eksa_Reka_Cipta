@@ -127,7 +127,7 @@
           <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $guru->tempat_lahir) }}, {{ old('tanggal_lahir', \Carbon\Carbon::parse($guru->tanggal_lahir)->format('d F Y')) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
-          <label class="text-xs text-gray-600">Jenis Kelamin</label>
+          <label class="text-xs text-gray-600">Jeniss Kelamin</label>
           <select name="jk" class="w-full border rounded-lg px-3 py-2 text-sm">
             <option value="Laki-laki" {{ $guru->jk === 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
             <option value="Perempuan" {{ $guru->jk === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
