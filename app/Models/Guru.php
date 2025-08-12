@@ -18,6 +18,7 @@ class Guru extends Model
         'tanggal_lahir',
         'tempat_lahir',
         'alamat',
+
         // Kolom tambahan dari migrasi baru
         'nuptk',
         'agama',
