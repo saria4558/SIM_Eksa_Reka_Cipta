@@ -24,12 +24,12 @@
 <body class="bg-gray-50">
   <div class="flex h-screen overflow-hidden">
     {{-- Sidebar --}}
-    @include('staff.partials.sidebar')
+    @include('kepsek.partials.sidebar')
 
     {{-- Main Content --}}
     <div class="flex flex-col flex-1 overflow-hidden">
       {{-- Header --}}
-      @include('staff.partials.header')
+      @include('kepsek.partials.header')
 
       {{-- Content --}}
       <main class="flex-1 overflow-y-auto p-6">

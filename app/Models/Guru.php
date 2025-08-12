@@ -16,6 +16,23 @@ class Guru extends Model
         'mapel',
         'alamat',
         'jenis_kelamin',
+
+        // Kolom tambahan dari migrasi baru
+        'nuptk',
+        'agama',
+        'status_kepegawaian',
+        'jabatan',
+        'tmt',
+        'pendidikan_terakhir',
+        'jurusan_pendidikan',
+        'sertifikasi_guru',
+        'no_sertifikat',
+        'golongan',
+        'unit_penempatan',
+        'pengalaman_mengajar',
+        'pelatihan',
+        'prestasi',
+        'status_aktif'
     ];
 
     public function user(): BelongsTo

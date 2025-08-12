@@ -101,4 +101,79 @@ class GuruController extends Controller
 
         return redirect()->route('guru.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
+
+
+    //perubahan dari eva
+
+    public function index()
+    {
+        $gurus = Guru::orderBy('nama')->paginate(10);
+        return view('staff.data-guru.index', compact('gurus'));
+    }
+
+    public function create()
+    {
+        return view('staff.data-guru.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nip' => 'required|unique:gurus',
+            'nama' => 'required',
+            'jk' => 'required|in:L,P',
+            'email' => 'nullable|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            $validated['foto'] = $request->file('foto')->store('foto_guru', 'public');
+        }
+
+        Guru::create($request->all() + $validated);
+
+        return redirect()->route('staff.data-guru.index')->with('success', 'Data guru berhasil ditambahkan.');
+    }
+
+    public function show(Guru $data_guru)
+    {
+        return view('staff.data-guru.show', ['guru' => $data_guru]);
+    }
+
+    public function edit(Guru $data_guru)
+    {
+        return view('staff.data-guru.edit', ['guru' => $data_guru]);
+    }
+
+    public function update(Request $request, Guru $data_guru)
+    {
+        $validated = $request->validate([
+            'nip' => 'required|unique:gurus,nip,' . $data_guru->id,
+            'nama' => 'required',
+            'jk' => 'required|in:L,P',
+            'email' => 'nullable|email',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            if ($data_guru->foto) {
+                Storage::disk('public')->delete($data_guru->foto);
+            }
+            $validated['foto'] = $request->file('foto')->store('foto_guru', 'public');
+        }
+
+        $data_guru->update($request->all() + $validated);
+
+        return redirect()->route('staff.data-guru.index')->with('success', 'Data guru berhasil diupdate.');
+    }
+
+    public function destroy(Guru $data_guru)
+    {
+        if ($data_guru->foto) {
+            Storage::disk('public')->delete($data_guru->foto);
+        }
+        $data_guru->delete();
+
+        return redirect()->route('staff.data-guru.index')->with('success', 'Data guru berhasil dihapus.');
+    }
 }

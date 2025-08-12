@@ -333,4 +333,9 @@ class MuridController extends Controller
 
         return redirect()->route('staff.data-murid.index')->with('success', 'Data murid berhasil dihapus.');
     }
+
+    public function importForm() {
+        return view('staff.data-murid.import');
+    }
+    
 }
