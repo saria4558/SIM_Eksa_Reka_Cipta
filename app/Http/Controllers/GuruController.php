@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\JadwalPelajaran;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 class GuruController extends Controller
 {
@@ -101,4 +103,19 @@ class GuruController extends Controller
 
         return redirect()->route('guru.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
+
+    public function jadwal()
+    {
+        $guru = Guru::where('user_id', Auth::id())->first();
+
+        $jadwal = JadwalPelajaran::whereHas('mataPelajaran', function($q) use ($guru) {
+            $q->where('guru_id', $guru->id);
+        })
+        ->with(['mataPelajaran', 'kelas'])
+        ->get();
+
+        return view('guru.jadwal', compact('jadwal'));
+    }   
+
+
 }

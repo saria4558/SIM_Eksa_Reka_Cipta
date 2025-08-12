@@ -13,9 +13,12 @@ class Guru extends Model
         'user_id',
         'nama',
         'nip',
+        'jk',
         'mapel',
+        'tanggal_lahir',
+        'tempat_lahir',
         'alamat',
-        'jenis_kelamin',
+        'no_hp'
     ];
 
     public function user(): BelongsTo
