@@ -49,12 +49,16 @@
   </div>
   <div class="space-y-1">
     <p class="text-xs text-gray-500">Tempat, Tanggal Lahir</p>
-    <p class="text-sm text-gray-800 font-medium">{{ $guru->tempat_lahir }}, {{ \Carbon\Carbon::parse($guru->tanggal_lahir)->isoFormat('D MMMM Y') }}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->tempat_lahir }}, {{ \Carbon\Carbon::parse($guru->tanggal_lahir)->translatedFormat('d F Y') }}</p>
   </div>
   <div>
     <p class="text-xs text-gray-500">Jenis Kelamin</p>
-    <p class="text-sm text-gray-800 font-medium">{{ $guru->jk }}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->jk === 'P' ? 'Perempuan' : ($guru->jk === 'L' ? 'Laki-laki' : '') }}</p>
   </div>
+  {{-- <div>
+    <p class="text-xs text-gray-500">Jenis Kelamin</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->jk}}</p>
+  </div> --}}
   <div>
     <p class="text-xs text-gray-500">Alamat</p>
     <p class="text-sm text-gray-800 font-medium">{{ $guru->alamat }}</p>
@@ -120,19 +124,26 @@
         </div>
         <div>
           <label class="text-xs text-gray-600">Mata Pelajaran</label>
-          <input type="text" name="mapel" value="{{ old('mapel', $guru->mapel) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <input type="text" name="mapel" value="{{ old('mapel', $guru->mapel) }}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
         <div>
-          <label class="text-xs text-gray-600">Tempat, Tanggal Lahir</label>
-          <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $guru->tempat_lahir) }}, {{ old('tanggal_lahir', \Carbon\Carbon::parse($guru->tanggal_lahir)->format('d F Y')) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+          <label class="text-xs text-gray-600">Tempat Lahir</label>
+          <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $guru->tempat_lahir) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
-          <label class="text-xs text-gray-600">Jeniss Kelamin</label>
-          <select name="jk" class="w-full border rounded-lg px-3 py-2 text-sm">
-            <option value="Laki-laki" {{ $guru->jk === 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-            <option value="Perempuan" {{ $guru->jk === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-          </select>
+          <label class="text-xs text-gray-600"> Tanggal Lahir</label>
+          <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $guru->tanggal_lahir)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
+        <div>
+            <label class="text-xs text-gray-500">Jenis Kelamin</label>
+            <input type="hidden" name="jk" value="{{ $guru->jk }}">
+            <input type="text" value="{{ $guru->jk === 'P' ? 'Perempuan' : ($guru->jk === 'L' ? 'Laki-laki' : '') }}"
+                class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+        </div>
+         {{-- <div>
+          <label class="text-xs text-gray-600">Jenis Kelamin</label>
+          <input type="text" name="jk" value="{{ old('jk', $guru->jk) }}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+        </div> --}}
         <div>
           <label class="text-xs text-gray-600">Alamat</label>
           <input type="text" name="alamat" value="{{ old('alamat', $guru->alamat) }}" class="w-full border rounded-lg px-3 py-2 text-sm">

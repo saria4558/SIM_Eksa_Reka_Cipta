@@ -52,7 +52,7 @@
   </div>
   <div>
     <p class="text-xs text-gray-500">Jenis Kelamin</p>
-    <p class="text-sm text-gray-800 font-medium">{{ $murid->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $murid->jk === 'P' ? 'Perempuan' : ($murid->jk === 'L' ? 'Laki-laki' : '') }}</p>
   </div>
   <div>
     <p class="text-xs text-gray-500">Alamat</p>
@@ -76,7 +76,7 @@
   </div>
   <div>
     <p class="text-xs text-gray-500">Email</p>
-    <p class="text-sm text-gray-800 font-medium">{{ $murid->user->email }}</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $murid->user->email}}</p>
   </div>
 </div>
 </div>
@@ -253,9 +253,12 @@
           <input type="text" name="agama" value="{{old('agama', $murid->agama)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
-          <label class="text-xs text-gray-500">Jenis Kelamin</label>
-          <input type="text" name="jk" value="{{old('jk', $murid->jk == 'L' ? 'Laki-Laki' : 'Perempuan')}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+            <label class="text-xs text-gray-500">Jenis Kelamin</label>
+            <input type="hidden" name="jk" value="{{ $murid->jk }}">
+            <input type="text" value="{{ $murid->jk === 'P' ? 'Perempuan' : ($murid->jk === 'L' ? 'Laki-laki' : '') }}"
+                class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
+
         <div>
           <label class="text-xs text-gray-600">Alamat</label>
           <input type="text" name="alamat" value="{{old('alamat', $murid->alamat)}}" class="w-full border rounded-lg px-3 py-2 text-sm">

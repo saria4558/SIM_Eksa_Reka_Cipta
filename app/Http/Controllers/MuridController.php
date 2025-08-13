@@ -39,7 +39,6 @@ class MuridController extends Controller
                 if ($user->foto) {
                     Storage::disk('public')->delete($user->foto);
                 }
-
                 $path = $request->file('foto')->store('user', 'public');
                 $user->foto = $path;
             }
@@ -144,11 +143,11 @@ class MuridController extends Controller
             'nama_wali'=> 'required|string|max:255',
             'hubungan_wali'=> 'required|string|max:225',
             'pekerjaan_wali'=> 'required|string|max:225',
-            'no_kip'=>'required|string|max:225',
+            'no_kip' => 'nullable|string|max:225',
+            'catatan_kesehatan' => 'nullable|string|max:1000',
+            'catatan_prestasi' => 'nullable|string|max:1000',
+            'catatan_pelanggaran' => 'nullable|string|max:1000',
             'golongan_darah'=>'required|string|max:225',
-            'catatan_kesehatan'=>'required|string|max:1000',
-            'catatan_prestasi'=>'required|string|max:1000',
-            'catatan_pelanggaran'=>'required|string|max:1000',
         ]);
 
         $murid->nama_wali = $request->nama_wali;
