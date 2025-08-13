@@ -54,5 +54,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Staff::class);
     }
+
+    public function sertifikasi()
+    {
+        return $this->hasMany(Sertifikasi::class);
+    }
+
 }
 

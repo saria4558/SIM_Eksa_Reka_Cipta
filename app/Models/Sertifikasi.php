@@ -30,13 +30,4 @@ class Sertifikasi extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    /**
-     * Relasi ke Guru
-     * Satu sertifikasi bisa digunakan oleh banyak guru.
-     */
-    public function gurus()
-    {
-        return $this->hasMany(Guru::class, 'sertifikasi_id');
-    }
 }
