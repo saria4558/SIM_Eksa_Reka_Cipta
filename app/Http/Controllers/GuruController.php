@@ -85,6 +85,20 @@ class GuruController extends Controller
             'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
+            
+            'agama' => 'required|string|max:20',
+            'status_kepegawaian'=> 'required|string|max:255',
+            'jabatan'=> 'required|string|max:255',
+            'pendidikan_terakhir'=>'required|string|max:255',
+            'jurusan_terakhir'=>'required|string|max:255',
+            'nama_sertifikasi'=>'required|string|max:255',
+            'no_sertifikat'=>'required|string|max:255',
+            'golongan'=>'required|string|max:255',
+            'unit_penempatan'=>'required|string|max:255',
+            'pengalaman_mengajar'=>'required|string|max:255',
+            'pelatihan'=>'required|string|max:255',
+            
+
         ]);
 
         $guru->nama = $request->nama;
