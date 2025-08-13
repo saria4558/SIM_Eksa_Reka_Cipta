@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('pendidikan_terakhir')->nullable()->after('tmt');
             $table->string('jurusan_pendidikan')->nullable()->after('pendidikan_terakhir');
             $table->string('golongan')->nullable()->after('jurusan_pendidikan');
-            $table->string('unit_penempatan')->nullable()->after('golongan');
-            $table->boolean('status_aktif')->default(true)->after('unit_penempatan');
+            $table->boolean('status_aktif')->default(true)->after('golongan');
         });
     }
 
