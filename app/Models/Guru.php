@@ -40,6 +40,7 @@ class Guru extends Model
         'nik',
         'nrg',
         'peg_id',
+        'sertifikasi_id'
     ];
 
     public function user(): BelongsTo

@@ -34,6 +34,46 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'Banyuwangi'
         ]);
 
+        $user = User::create([
+            'username' => 'gurusatu',
+            'email' => 'gurusatu@example.com',
+            'password' => Hash::make('password123'),
+            'role' => 'guru'
+        ]);
+
+        // Buat data guru
+        Guru::create([
+            'user_id' => $user->id,
+            'nama' => 'Budi Santoso',
+            'nip' => '198012312010011001',
+            'jk' => 'L',
+            'mapel' => 'Matematika',
+            'tanggal_lahir' => '1980-12-31',
+            'tempat_lahir' => 'Banyuwangi',
+            'alamat' => 'Jl. Raya No. 123',
+            'nuptk' => '1234567890123456',
+            'agama' => 'Islam',
+            'status_kepegawaian' => 'PNS',
+            'jabatan' => 'Guru Madya',
+            'tmt' => '2010-01-01',
+            'pendidikan_terakhir' => 'S1',
+            'jurusan_pendidikan' => 'Pendidikan Matematika',
+            'nama_sertifikasi' => 'Sertifikat Pendidik',
+            'no_sertifikat' => 'SER123456',
+            'foto' => 'guru1.jpg',
+            'golongan' => 'IV/a',
+            'unit_penempatan' => 'SMA Negeri 1 Banyuwangi',
+            'pengalaman_mengajar' => '15 tahun',
+            'pelatihan' => 'Pelatihan Kurikulum Merdeka',
+            'prestasi' => 'Guru Berprestasi Nasional 2020',
+            'status_aktif' => '1',
+            'no_hp' => '081234567890',
+            'npk' => 'NPK001',
+            'nik' => '3501010101010001',
+            'nrg' => 'NRG001',
+            'peg_id' => 'PEG001',
+        ]);
+
         // Murid
         $murid = User::create([
             'username' => 'murid1',
