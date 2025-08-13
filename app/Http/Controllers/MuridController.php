@@ -71,7 +71,6 @@ class MuridController extends Controller
                 'tempat_lahir' => 'required|string|max:255',
                 'tanggal_lahir' => 'required|date',
                 'agama' => 'required|string|max:255',
-                // 'agama' => 'nullable|string|max:255',
                 'jk' => 'required|string',
                 'alamat' => 'required|string|max:255',
                 'kelas' => 'required|string|max:255',
@@ -155,9 +154,6 @@ class MuridController extends Controller
         $murid->pekerjaan_wali = $request->pekerjaan_wali;
         $murid->no_kip = $request->no_kip;
         $murid->golongan_darah = $request->golongan_darah;
-        $murid->catatan_kesehatan = $request->catatan_kesehatan;
-        $murid->catatan_prestasi = $request->catatan_prestasi;
-        $murid->catatan_pelanggaran = $request->catatan_pelanggaran;
         $murid->save();
         return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }

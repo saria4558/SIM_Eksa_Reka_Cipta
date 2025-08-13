@@ -150,18 +150,6 @@
     <p class="text-xs text-gray-500">Golongan Darah</p>
     <p class="text-sm text-gray-800 font-medium">{{$murid->golongan_darah}}</p>
   </div>
-  <div class="space-y-1">
-    <p class="text-xs text-gray-500">Catatan Kesehatan</p>
-    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_kesehatan}}</p>
-  </div>
-  <div class="space-y-1">
-    <p class="text-xs text-gray-500">Catatan Prestasi</p>
-    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_prestasi}}</p>
-  </div>
-  <div class="space-y-1">
-    <p class="text-xs text-gray-500">Catatan Pelanggaran</p>
-    <p class="text-sm text-gray-800 font-medium">{{$murid->catatan_pelanggaran}}</p>
-  </div>
 </div>
 </div>
 
@@ -279,15 +267,6 @@
           <label class="text-xs text-gray-500">Status</label>
           <input type="text" name="status" value="{{old('status', $murid->status)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
-        {{-- <div>
-          <label class="text-xs text-gray-600">Status</label>
-          <select name="status" class="w-full border rounded-lg px-3 py-2 text-sm">
-            <option value="aktif" {{ $murid->status === 'aktif' ? 'selected' : '' }}>Aktif</option>
-            <option value="alumni" {{ $murid->status === 'alumni' ? 'selected' : '' }}>Alumni</option>
-            <option value="pindah" {{ $murid->status === 'pindah' ? 'selected' : '' }}>Pindah</option>
-            <option value="dikeluarkan" {{ $murid->status === 'dikeluarkan' ? 'selected' : '' }}>Dikeluarkan</option>
-          </select>
-        </div> --}}
         <div>
             <label class="text-xs text-gray-600">Email</label>
             <input type="email" name="email" value="{{ old('email', $murid->user->email) }}"
@@ -397,18 +376,6 @@
         <div>
           <label class="text-xs text-gray-600">Golongan Darah</label>
           <input type="text" name="golongan_darah" value="{{old('golongan_darah', $murid->golongan_darah)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
-        </div>
-        <div>
-          <label class="text-xs text-gray-600">Catatan Kesehatan</label>
-          <input type="text" name="catatan_kesehatan" value="{{old('catatan_kesehatan', $murid->catatan_kesehatan)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
-        </div>
-        <div>
-          <label class="text-xs text-gray-600">Catatan Prestasi</label>
-          <input type="text" name="catatan_prestasi" value="{{old('catatan_prestasi', $murid->catatan_prestasi)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
-        </div>
-        <div>
-          <label class="text-xs text-gray-600">Catatan Pelanggaran</label>
-          <input type="text" name="catatan_pelanggaran" value="{{old('catatan_pelanggaran', $murid->catatan_pelanggaran)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
         </div>
 
       </div>
