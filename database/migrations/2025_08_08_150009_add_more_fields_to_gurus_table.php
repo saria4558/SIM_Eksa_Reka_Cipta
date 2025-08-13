@@ -22,19 +22,9 @@ return new class extends Migration
             $table->date('tmt')->nullable()->after('jabatan');
             $table->string('pendidikan_terakhir')->nullable()->after('tmt');
             $table->string('jurusan_pendidikan')->nullable()->after('pendidikan_terakhir');
-            $table->string('nama_sertifikasi')->nullable()->after('jurusan_pendidikan');
-            $table->string('no_sertifikat')->nullable()->after('nama_sertifikasi');
-            $table->string('foto')->nullable()->default('default.png')->after('no_sertifikat');
-            $table->string('golongan')->nullable()->after('no_sertifikat');
+            $table->string('golongan')->nullable()->after('jurusan_pendidikan');
             $table->string('unit_penempatan')->nullable()->after('golongan');
-
-            // Data tambahan
-            $table->text('pengalaman_mengajar')->nullable()->after('unit_penempatan');
-            $table->text('pelatihan')->nullable()->after('pengalaman_mengajar');
-            $table->text('prestasi')->nullable()->after('pelatihan');
-
-            // Status
-            $table->boolean('status_aktif')->default(true)->after('prestasi');
+            $table->boolean('status_aktif')->default(true)->after('unit_penempatan');
         });
     }
 
