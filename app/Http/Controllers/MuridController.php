@@ -220,9 +220,6 @@ class MuridController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'no_kip' => 'nullable|string|max:100',
             'golongan_darah' => 'nullable|string|max:3',
-            'catatan_kesehatan' => 'nullable|string',
-            'catatan_prestasi' => 'nullable|string',
-            'catatan_pelanggaran' => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -277,9 +274,6 @@ class MuridController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'no_kip' => 'nullable|string|max:100',
             'golongan_darah' => 'nullable|string|max:3',
-            'catatan_kesehatan' => 'nullable|string',
-            'catatan_prestasi' => 'nullable|string',
-            'catatan_pelanggaran' => 'nullable|string',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -307,5 +301,5 @@ class MuridController extends Controller
     public function importForm() {
         return view('staff.data-murid.import');
     }
-    
+
 }

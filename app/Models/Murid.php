@@ -35,9 +35,6 @@ class Murid extends Model
         'pekerjaan_wali',
         'no_kip',
         'golongan_darah',
-        'catatan_kesehatan',
-        'catatan_prestasi',
-        'catatan_pelanggaran',
     ];
 
     public function user(): BelongsTo

@@ -152,18 +152,6 @@
                     <label class="block text-sm font-medium text-gray-700">Golongan Darah</label>
                     <p class="mt-1 text-gray-900">{{ $murid->golongan_darah ?? '-' }}</p>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Catatan Kesehatan</label>
-                    <p class="mt-1 text-gray-900">{{ $murid->catatan_kesehatan ?? '-' }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Catatan Prestasi</label>
-                    <p class="mt-1 text-gray-900">{{ $murid->catatan_prestasi ?? '-' }}</p>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Catatan Pelanggaran</label>
-                    <p class="mt-1 text-gray-900">{{ $murid->catatan_pelanggaran ?? '-' }}</p>
-                </div>
             </div>
         </div>
     </div>

@@ -303,33 +303,6 @@
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="md:col-span-2">
-                <label for="catatan_kesehatan" class="block text-sm font-medium text-gray-700">Catatan Kesehatan</label>
-                <textarea name="catatan_kesehatan" id="catatan_kesehatan" rows="3"
-                          class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="Contoh: Alergi obat, riwayat penyakit, dll">{{ old('catatan_kesehatan', $murid->catatan_kesehatan ?? '') }}</textarea>
-                @error('catatan_kesehatan')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="md:col-span-2">
-                <label for="catatan_prestasi" class="block text-sm font-medium text-gray-700">Catatan Prestasi</label>
-                <textarea name="catatan_prestasi" id="catatan_prestasi" rows="3"
-                          class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="Contoh: Juara 1 Olimpiade Matematika 2024, dll">{{ old('catatan_prestasi', $murid->catatan_prestasi ?? '') }}</textarea>
-                @error('catatan_prestasi')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="md:col-span-2">
-                <label for="catatan_pelanggaran" class="block text-sm font-medium text-gray-700">Catatan Pelanggaran</label>
-                <textarea name="catatan_pelanggaran" id="catatan_pelanggaran" rows="3"
-                          class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="Catatan pelanggaran tata tertib sekolah">{{ old('catatan_pelanggaran', $murid->catatan_pelanggaran ?? '') }}</textarea>
-                @error('catatan_pelanggaran')
-                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                @enderror
-            </div>
         </div>
     </div>
 </div>
