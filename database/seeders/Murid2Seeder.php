@@ -24,7 +24,7 @@ class Murid2Seeder extends Seeder
             'nama' => 'Ani Murid 3',
             'nis' => '202304011',
             'nisn' => '994762655',
-            'kelas' => 'XII IPS 2',
+            // 'kelas' => 'XII IPS 2',
             'jurusan' => 'IPS',
             'tahun_masuk' => 2021,
             'status' => 'aktif',

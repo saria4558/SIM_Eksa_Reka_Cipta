@@ -20,7 +20,7 @@ class Murid extends Model
         'agama',
         'alamat',
         'telepon',
-        'kelas',
+        'kelas_id',
         'jurusan',
         'tahun_masuk',
         'status',
@@ -35,6 +35,7 @@ class Murid extends Model
         'pekerjaan_wali',
         'no_kip',
         'golongan_darah',
+        'user_id'
     ];
 
     public function user(): BelongsTo
@@ -42,8 +43,14 @@ class Murid extends Model
         return $this->belongsTo(User::class);
     }
 
+
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
+    public function jadwalPelajaran()
+    {
+        return $this->hasMany(JadwalPelajaran::class, 'kelas_id', 'kelas_id');
+    }
+
 }

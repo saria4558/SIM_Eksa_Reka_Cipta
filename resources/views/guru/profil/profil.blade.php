@@ -63,6 +63,58 @@
     <p class="text-xs text-gray-500">Alamat</p>
     <p class="text-sm text-gray-800 font-medium">{{ $guru->alamat }}</p>
   </div>
+  <div>
+    <p class="text-xs text-gray-500">NUPTK</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->nuptk }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Agama</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->agama }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Status Kepegawaian</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->status_kepegawaian }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Jabatan</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->jabatan }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">TMT (Tanggal Mulai Tugas)</p>
+    <p class="text-sm text-gray-800 font-medium">{{ \Carbon\Carbon::parse($guru->tmt)->translatedFormat('d F Y') }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Pendidikan Terakhir</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->pendidikan_terakhir }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Jurusan Pendidikan</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->jurusan_pendidikan}}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Golongan</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->golongan}}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">Status</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->status_aktif}}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">NPK</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->npk}}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">NIK</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->nik }}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">NRG</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->nrg}}</p>
+  </div>
+  <div>
+    <p class="text-xs text-gray-500">PEG ID</p>
+    <p class="text-sm text-gray-800 font-medium">{{ $guru->peg_id}}</p>
+  </div>
 </div>
 </div>
 
@@ -75,7 +127,7 @@
     {{-- isian Nama Lengkap, Kelas, Foto --}}
     <form action="{{ route('guru.update.umum') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
       @csrf
-      <div class="flex flex-col items-center space-y-2">
+      <div class="flex flex-col items-center space-y-2 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div class="relative">
           <img id="preview-general" src="{{ asset('storage/' . $guru->user->foto) }}" class="h-24 w-24 rounded-full ring-2 ring-blue-500 object-cover">
           <label for="upload-general" class="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full cursor-pointer">
@@ -109,7 +161,7 @@
     {{-- isian detail pribadi --}}
     <form action="{{ route('guru.update.pribadi') }}" method="POST" class="space-y-4">
       @csrf
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div>
           <label class="text-xs text-gray-600">Nama Lengkap</label>
           <input type="text" name="nama" value="{{ old('nama', $guru->nama) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
@@ -152,6 +204,58 @@
           <label class="text-xs text-gray-600">Nomor HP</label>
           <input type="text" name="no_hp" value="{{ old('no_hp', $guru->no_hp) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
+        <div>
+            <label class="text-xs text-gray-600">NUPTK</label>
+            <input type="text" name="nuptk" value="{{ old('nuptk', $guru->nuptk) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Agama</label>
+            <input type="text" name="agama" value="{{ old('agama', $guru->agama) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Status Kepegawaian</label>
+            <input type="text" name="status_kepegawaian" value="{{ old('status_kepegawaian', $guru->status_kepegawaian) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Jabatan</label>
+            <input type="text" name="jabatan" value="{{ old('jabatan', $guru->jabatan) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">TMT</label>
+            <input type="date" name="tmt" value="{{ old('tmt', $guru->tmt) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Pendidikan Terakhir</label>
+            <input type="text" name="pendidikan_terakhir" value="{{ old('pendidikan_terakhir', $guru->pendidikan_terakhir) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Jurusan Pendidikan</label>
+            <input type="text" name="jurusan_pendidikan" value="{{ old('jurusan_pendidikan', $guru->jurusan_pendidikan) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Golongan</label>
+            <input type="text" name="golongan" value="{{ old('golongan', $guru->golongan) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">Status Aktif</label>
+            <input type="text" name="status_aktif" value="{{ old('status_aktif', $guru->status_aktif) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">NPK</label>
+            <input type="text" name="npk" value="{{ old('npk', $guru->npk) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">NIK</label>
+            <input type="text" name="nik" value="{{ old('nik', $guru->nik) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+        <div>
+            <label class="text-xs text-gray-600">NRG</label>
+            <input type="text" name="nrg" value="{{ old('nrg', $guru->nrg) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+        </div>
+    <div>
+        <label class="text-xs text-gray-600">PEG ID</label>
+        <input type="text" name="peg_id" value="{{ old('peg_id', $guru->peg_id) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
+    </div>
       </div>
       <div class="flex justify-end gap-3">
         <button type="button" id="cancel-personal-popup" class="px-4 py-2 rounded-lg bg-gray-200 text-sm">Batal</button>

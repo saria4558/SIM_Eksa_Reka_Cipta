@@ -61,7 +61,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Kelas</label>
-                    <p class="mt-1 text-gray-900">{{ $murid->kelas }}</p>
+                    <p class="mt-1 text-gray-900">{{ $murid->kelas->nama_kelas }}</p>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Jurusan</label>

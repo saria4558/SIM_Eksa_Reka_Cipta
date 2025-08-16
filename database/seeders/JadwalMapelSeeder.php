@@ -10,6 +10,7 @@ use App\Models\Murid;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\JadwalPelajaran;
+use App\Models\Ruangan;
 
 class JadwalMapelSeeder extends Seeder
 {
@@ -18,7 +19,12 @@ class JadwalMapelSeeder extends Seeder
      */
     public function run(): void
     {
-        // === 1. KELAS ===
+        // === 1. RUANGAN ===
+        $ruang101 = Ruangan::create(['nama_ruangan' => 'Ruang 101']);
+        $ruang102 = Ruangan::create(['nama_ruangan' => 'Ruang 102']);
+        $labKomputer = Ruangan::create(['nama_ruangan' => 'Lab Komputer']);
+
+        // === 2. KELAS ===
         $kelas1A1 = Kelas::create(['nama_kelas' => 'X IPA 1']);
         $kelas1S1 = Kelas::create(['nama_kelas' => 'X IPS 1']);
         $kelas2A1 = Kelas::create(['nama_kelas' => 'XI IPA 1']);
@@ -26,7 +32,7 @@ class JadwalMapelSeeder extends Seeder
         $kelas3A1 = Kelas::create(['nama_kelas' => 'XII IPA 1']);
         $kelas3S1 = Kelas::create(['nama_kelas' => 'XII IPS 1']);
 
-        // === 2. GURU ===
+        // === 3. GURU ===
         $userGuru = User::create([
             'username' => 'Pak Budi',
             'email' => 'guru@example.com',
@@ -50,22 +56,21 @@ class JadwalMapelSeeder extends Seeder
             'no_hp' => '081234567890',
             'tanggal_lahir' => '2004-06-25',
             'tempat_lahir' => 'Banyuwangi'
-      
         ]);
+
         $guru3 = Guru::create([
             'user_id' => $userGuru3->id,
             'nama' => 'Pak Bani',
             'nip' => '198012312001',
             'jk' => 'L',
-            'mapel' => 'Matematika',
+            'mapel' => 'Bahasa Indonesia',
             'alamat' => 'Jl. Pendidikan No.1',
             'no_hp' => '08123456780',
             'tanggal_lahir' => '2004-06-25',
             'tempat_lahir' => 'Banyuwangi'
-            
         ]);
 
-        // === 3. MURID ===
+        // === 4. MURID ===
         $userMurid = User::create([
             'username' => 'Ayu',
             'email' => 'ayu@example.com',
@@ -79,7 +84,6 @@ class JadwalMapelSeeder extends Seeder
             'nis' => '123456',
             'kelas_id' => $kelas1A1->id,
             'nisn' => '99887762675',
-            'kelas' => 'XII IPS 2',
             'jurusan' => 'IPS',
             'tahun_masuk' => 2021,
             'status' => 'aktif',
@@ -93,7 +97,7 @@ class JadwalMapelSeeder extends Seeder
             'telepon_ortu' => '08984543210',
         ]);
 
-        // === 4. MATA PELAJARAN ===
+        // === 5. MATA PELAJARAN ===
         $mapel = Mapel::create([
             'nama_mapel' => 'Matematika',
             'guru_id' => $guru->id,
@@ -103,11 +107,12 @@ class JadwalMapelSeeder extends Seeder
             'guru_id' => $guru3->id,
         ]);
 
-        // === 5. JADWAL PELAJARAN ===
+        // === 6. JADWAL PELAJARAN DENGAN RUANGAN ===
         JadwalPelajaran::create([
             'kelas_id' => $kelas1A1->id,
             'mapel_id' => $mapel->id,
             'guru_id'  => $mapel->guru_id,
+            'ruangan_id' => $ruang101->id,
             'hari' => 'Senin',
             'jam_mulai' => '07:00',
             'jam_selesai' => '08:30',
@@ -117,6 +122,7 @@ class JadwalMapelSeeder extends Seeder
             'kelas_id' => $kelas2A1->id,
             'mapel_id' => $mapel->id,
             'guru_id'  => $mapel->guru_id,
+            'ruangan_id' => $ruang102->id,
             'hari' => 'Selasa',
             'jam_mulai' => '09:00',
             'jam_selesai' => '10:30',
@@ -126,14 +132,17 @@ class JadwalMapelSeeder extends Seeder
             'kelas_id' => $kelas2A1->id,
             'mapel_id' => $mapel->id,
             'guru_id'  => $mapel->guru_id,
+            'ruangan_id' => $labKomputer->id,
             'hari' => 'Rabu',
             'jam_mulai' => '09:00',
             'jam_selesai' => '10:30',
         ]);
+
         JadwalPelajaran::create([
             'kelas_id' => $kelas2A1->id,
             'mapel_id' => $mapel3->id,
             'guru_id'  => $mapel3->guru_id,
+            'ruangan_id' => $ruang101->id,
             'hari' => 'Kamis',
             'jam_mulai' => '09:00',
             'jam_selesai' => '10:30',

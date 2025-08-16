@@ -72,9 +72,10 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Filter Kelas</label>
                     <select class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" id="filter-kelas">
                         <option value="">Semua Kelas</option>
-                        @foreach($murids->pluck('kelas')->unique()->sort() as $kelas)
+                        @foreach($murids->pluck('kelas.nama_kelas')->unique()->sort() as $kelas)
                             <option value="{{ $kelas }}">{{ $kelas }}</option>
                         @endforeach
+
                     </select>
                 </div>
                 <div>
@@ -100,7 +101,7 @@
         </div>
 
         {{-- Loop data murid berdasarkan kelas --}}
-        @forelse ($murids->groupBy('kelas') as $kelas => $groupedMurids)
+        @forelse ($murids->groupBy('kelas.nama_kelas') as $kelas => $groupedMurids)
             <div class="bg-white rounded-lg shadow overflow-hidden mb-6">
                 <div class="bg-blue-50 px-4 py-2 border-b border-blue-100">
                     <h3 class="font-semibold text-blue-800">Kelas {{ $kelas }}</h3>

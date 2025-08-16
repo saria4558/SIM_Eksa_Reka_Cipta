@@ -86,31 +86,46 @@ class GuruController extends Controller
             'tempat_lahir' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             
-            'agama' => 'required|string|max:20',
-            'status_kepegawaian'=> 'required|string|max:255',
-            'jabatan'=> 'required|string|max:255',
-            'pendidikan_terakhir'=>'required|string|max:255',
-            'jurusan_terakhir'=>'required|string|max:255',
-            'nama_sertifikasi'=>'required|string|max:255',
-            'no_sertifikat'=>'required|string|max:255',
-            'golongan'=>'required|string|max:255',
-            'unit_penempatan'=>'required|string|max:255',
-            'pengalaman_mengajar'=>'required|string|max:255',
-            'pelatihan'=>'required|string|max:255',
+            'nuptk' => 'nullable|string|max:50',
+            'agama' => 'nullable|string|max:20',
+            'status_kepegawaian'=> 'nullable|string|max:255',
+            'jabatan'=> 'nullable|string|max:255',
+            'tmt' => 'nullable|date',
+            'pendidikan_terakhir'=>'nullable|string|max:255',
+            'jurusan_pendidikan'=>'nullable|string|max:255',
+            'golongan'=>'nullable|string|max:255',
+            'status_aktif'=>'nullable|string|max:255',
+            'npk'=>'nullable|string|max:255',
+            'nik'=>'nullable|string|max:255',
+            'nrg'=>'nullable|string|max:255',
+            'peg_id'=>'nullable|string|max:255',
             
-
         ]);
 
         $guru->nama = $request->nama;
         $guru->nip = $request->nip;
+        $user->email = $request->email;
         $guru->jk = $request->jk;
         $guru->mapel = $request->mapel;
         $guru->no_hp = $request->no_hp;
         $guru->tanggal_lahir = $request->tanggal_lahir;
         $guru->tempat_lahir = $request->tempat_lahir;
         $guru->alamat = $request->alamat;
+        $guru->nuptk = $request->nuptk;
+        $guru->agama = $request->agama;
+        $guru->status_kepegawaian = $request->status_kepegawaian;
+        $guru->jabatan = $request->jabatan;
+        $guru->tmt = $request->tmt;
+        $guru->pendidikan_terakhir = $request->pendidikan_terakhir;
+        $guru->jurusan_pendidikan = $request->jurusan_pendidikan;
+        $guru->golongan = $request->golongan;
+        $guru->status_aktif = $request->status_aktif;
+        $guru->npk = $request->npk;
+        $guru->nik = $request->nik;
+        $guru->nrg = $request->nrg;
+        $guru->peg_id = $request->peg_id;
 
-        $user->email = $request->email;
+        
 
         $guru->save();
         $user->save();

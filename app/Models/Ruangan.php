@@ -4,25 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mapel extends Model
+class Ruangan extends Model
 {
-    protected $table = 'mapels';
+    protected $table = 'ruangan';
 
     protected $fillable = [
         'id',
-        'guru_id',
-        'nama_mapel'
+        'nama_ruangan',
     ];
 
-    public function guru()
+    public function murids()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->hasMany(Murid::class);
     }
-
     public function jadwalPelajaran()
     {
         return $this->hasMany(JadwalPelajaran::class);
     }
-
-
 }

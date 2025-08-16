@@ -7,7 +7,7 @@
   <img src="{{ asset('storage/' . $murid->user->foto) }}" alt="foto profil" class="h-20 w-20 rounded-full object-cover ring-2 ring-blue-600">
   <div class="flex-1">
     <h2 class="text-sm font-semibold text-gray-800">{{$murid->user->username}}</h2>
-    <p class="text-sm text-gray-500">{{$murid->kelas}}</p>
+    <p class="text-sm text-gray-500">{{$murid->kelas->nama_kelas}}</p>
     {{-- <p class="text-xs text-gray-400 italic">-</p> --}}
   </div>
   <button id="open-general-popup" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center gap-2">
@@ -60,7 +60,7 @@
   </div>
   <div>
     <p class="text-xs text-gray-500">Kelas</p>
-    <p class="text-sm text-gray-800 font-medium">{{$murid->kelas}}</p>
+    <p class="text-sm text-gray-800 font-medium">{{$murid->kelas->nama_kelas}}</p>
   </div>
   <div>
     <p class="text-xs text-gray-500">Jurusan</p>
@@ -164,7 +164,7 @@
     {{-- isian Nama Lengkap, Kelas, Foto --}}
     <form action="{{route('murid.update.umum')}}" method="POST" enctype="multipart/form-data" class="space-y-4">
       @csrf
-      <div class="flex flex-col items-center space-y-2">
+      <div class="flex flex-col items-center space-y-2 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div class="relative">
           <img id="preview-general" src="{{ asset('storage/' . $murid->user->foto) }}" class="h-24 w-24 rounded-full ring-2 ring-blue-500 object-cover">
           <label for="upload-general" class="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full cursor-pointer">
@@ -183,7 +183,7 @@
       </div>
       <div>
         <label class="text-xs text-gray-500">Kelas</label>
-        <input type="text" name="kelas" value="{{old('kelas', $murid->kelas)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+        <input type="text" name="kelas" value="{{old('kelas', $murid->kelas->nama_kelas)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
       </div>
       <div class="flex justify-end gap-3">
         <button type="button" id="cancel-general-popup" class="px-4 py-2 rounded-lg bg-gray-200 text-sm">Batal</button>
@@ -211,7 +211,9 @@
     {{-- isian detail pribadi --}}
     <form action="{{route('murid.update.personal')}}" method="POST" class="space-y-4">
       @csrf
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      @method('PUT')
+      {{-- <input type="hidden" name="id" value="{{ $murid->id }}"> --}}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div>
           <label class="text-xs text-gray-600">Nama Lengkap</label>
           <input type="text" name="nama" value="{{old('nama',$murid->nama)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
@@ -252,8 +254,19 @@
           <input type="text" name="alamat" value="{{old('alamat', $murid->alamat)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
         </div>
         <div>
-          <label class="text-xs text-gray-500">Kelas</label>
-          <input type="text" name="kelas" value="{{old('kelas', $murid->kelas)}}" class="w-full border border-gray-300 bg-gray-100 text-gray-500 rounded-lg px-3 py-2 text-sm cursor-not-allowed" readonly>
+           <div>
+              <label class="text-xs text-gray-600">Kelas</label>
+              <select name="kelas_id" 
+                      class="w-full border rounded-lg px-3 py-2 text-sm bg-white"
+                      required>
+                  @foreach($kelasList as $kelas)
+                      <option value="{{ $kelas->id }}" {{ $murid->kelas_id == $kelas->id ? 'selected' : '' }}>
+                          {{ $kelas->nama_kelas }}
+                      </option>
+                  @endforeach
+              </select>
+          </div>
+
         </div>
         <div>
           <label class="text-xs text-gray-500">Jurusan</label>
@@ -309,7 +322,7 @@
     {{-- isian detail pribadi --}}
     <form action="{{route('murid.update.parents')}}" method="POST" class="space-y-4">
       @csrf
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div>
           <label class="text-xs text-gray-600">Nama Ayah</label>
           <input type="text"  name="nama_ayah" value="{{old('nama_ayah', $murid->nama_ayah)}}" class="w-full border rounded-lg px-3 py-2 text-sm">
@@ -355,7 +368,7 @@
     {{-- isian detail pribadi --}}
     <form action="{{route('murid.update.more')}}" method="POST" class="space-y-4">
       @csrf
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto max-h-[80vh] md:max-h-[50vh]">
         <div>
           <label class="text-xs text-gray-600">Nama Wali</label>
           <input type="text" name="nama_wali" value="{{old('nama_wali', $murid->nama_wali)}}" class="w-full border rounded-lg px-3 py-2 text-sm">

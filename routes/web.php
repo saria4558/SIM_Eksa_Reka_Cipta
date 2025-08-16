@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MuridController;
+use App\Models\JadwalPelajaran;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -68,10 +70,10 @@ Route::middleware('role:murid')->group(function () {
 
     Route::get('/wali/profil', [MuridController::class, 'profil'])->name('wali.profil.profil');
     Route::post('/wali/update-umum', [MuridController::class, 'updateUmum'])->name('murid.update.umum');
-    Route::post('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
+    Route::put('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
     Route::post('/wali/update-parents', [MuridController::class, 'parentsInfo'])->name('murid.update.parents');
     Route::post('/wali/update-more', [MuridController::class, 'moreInfo'])->name('murid.update.more');
-
+    Route::get('/wali/jadwal', [JadwalController::class, 'jadwalMurid'])->name('murid.jadwal');
 
     Route::get('/wali/tagihan', function () {
         return view('wali.tagihan.tagihan');
