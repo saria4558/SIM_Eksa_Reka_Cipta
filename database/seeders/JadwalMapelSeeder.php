@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Guru;
@@ -14,138 +13,130 @@ use App\Models\Ruangan;
 
 class JadwalMapelSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // === 1. RUANGAN ===
+        // === RUANGAN ===
         $ruang101 = Ruangan::create(['nama_ruangan' => 'Ruang 101']);
         $ruang102 = Ruangan::create(['nama_ruangan' => 'Ruang 102']);
         $labKomputer = Ruangan::create(['nama_ruangan' => 'Lab Komputer']);
 
-        // === 2. KELAS ===
-        $kelas1A1 = Kelas::create(['nama_kelas' => 'X IPA 1']);
-        $kelas1S1 = Kelas::create(['nama_kelas' => 'X IPS 1']);
-        $kelas2A1 = Kelas::create(['nama_kelas' => 'XI IPA 1']);
-        $kelas2S1 = Kelas::create(['nama_kelas' => 'XI IPS 1']);
-        $kelas3A1 = Kelas::create(['nama_kelas' => 'XII IPA 1']);
-        $kelas3S1 = Kelas::create(['nama_kelas' => 'XII IPS 1']);
+        // === KELAS ===
+        $kelasNama = [
+            'X IPA 1', 'X IPA 2', 'XI IPA 1', 'XI IPA 2', 'XII IPA 1', 'XII IPA 2',
+            'X IPS 1', 'X IPS 2', 'XI IPS 1', 'XI IPS 2', 'XII IPS 1', 'XII IPS 2'
+        ];
 
-        // === 3. GURU ===
-        $userGuru = User::create([
-            'username' => 'Pak Budi',
-            'email' => 'guru@example.com',
-            'password' => bcrypt('password'),
-            'role' => 'guru',
-        ]);
-        $userGuru3 = User::create([
-            'username' => 'Pak Bani',
-            'email' => 'guru3@example.com',
-            'password' => bcrypt('password'),
-            'role' => 'guru',
-        ]);
+        $kelas = [];
+        foreach ($kelasNama as $kn) {
+            $kelas[] = Kelas::create(['nama_kelas' => $kn]);
+        }
 
-        $guru = Guru::create([
-            'user_id' => $userGuru->id,
-            'nama' => 'Pak Budi',
-            'nip' => '198012312005',
-            'jk' => 'L',
-            'mapel' => 'Matematika',
-            'alamat' => 'Jl. Pendidikan No.1',
-            'no_hp' => '081234567890',
-            'tanggal_lahir' => '2004-06-25',
-            'tempat_lahir' => 'Banyuwangi'
-        ]);
+        // === GURU & MAPEL ===
+        $guruData = [
+            ['nama'=>'Pak Budi','mapel'=>'Matematika'],
+            ['nama'=>'Pak Bani','mapel'=>'Bahasa Indonesia'],
+            ['nama'=>'Bu Rina','mapel'=>'Fisika'],
+            ['nama'=>'Pak Anton','mapel'=>'Kimia'],
+            ['nama'=>'Bu Sari','mapel'=>'Biologi'],
+        ];
 
-        $guru3 = Guru::create([
-            'user_id' => $userGuru3->id,
-            'nama' => 'Pak Bani',
-            'nip' => '198012312001',
-            'jk' => 'L',
-            'mapel' => 'Bahasa Indonesia',
-            'alamat' => 'Jl. Pendidikan No.1',
-            'no_hp' => '08123456780',
-            'tanggal_lahir' => '2004-06-25',
-            'tempat_lahir' => 'Banyuwangi'
-        ]);
+        $guruMapel = [];
+        foreach ($guruData as $index => $data) {
+            $userGuru = User::create([
+                'username' => strtolower(str_replace(' ','',$data['nama'])),
+                'email' => strtolower(str_replace(' ','',$data['nama'])).'@example.com',
+                'password' => bcrypt('password'),
+                'role' => 'guru',
+            ]);
 
-        // === 4. MURID ===
-        $userMurid = User::create([
-            'username' => 'Ayu',
-            'email' => 'ayu@example.com',
-            'password' => bcrypt('password'),
-            'role' => 'murid',
-        ]);
+            $nip = '1980123120' . str_pad($index + 1, 2, '0', STR_PAD_LEFT); // NIP unik
 
-        Murid::create([
-            'user_id' => $userMurid->id,
-            'nama' => 'Ayu',
-            'nis' => '123456',
-            'kelas_id' => $kelas1A1->id,
-            'nisn' => '99887762675',
-            'jurusan' => 'IPS',
-            'tahun_masuk' => 2021,
-            'status' => 'aktif',
-            'jk' => 'P',
-            'tanggal_lahir' => '2004-06-25',
-            'tempat_lahir' => 'Banyuwangi',
-            'agama' => 'Islam',
-            'alamat' => 'Jl. Pelajar No.2',
-            'nama_ayah' => 'Pak Budi',
-            'nama_ibu' => 'Bu Ani',
-            'telepon_ortu' => '08984543210',
-        ]);
+            $guru = Guru::create([
+                'user_id' => $userGuru->id,
+                'nama' => $data['nama'],
+                'nip' => $nip,
+                'jk' => 'L',
+                'mapel' => $data['mapel'],
+                'alamat' => 'Jl. Pendidikan No.1',
+                'no_hp' => '0812345678'.str_pad($index,1,'0',STR_PAD_LEFT),
+                'tanggal_lahir' => '1980-01-01',
+                'tempat_lahir' => 'Banyuwangi'
+            ]);
 
-        // === 5. MATA PELAJARAN ===
-        $mapel = Mapel::create([
-            'nama_mapel' => 'Matematika',
-            'guru_id' => $guru->id,
-        ]);
-        $mapel3 = Mapel::create([
-            'nama_mapel' => 'Bahasa Indonesia',
-            'guru_id' => $guru3->id,
-        ]);
+            $mapel = Mapel::create([
+                'nama_mapel' => $data['mapel'],
+                'guru_id' => $guru->id,
+            ]);
 
-        // === 6. JADWAL PELAJARAN DENGAN RUANGAN ===
-        JadwalPelajaran::create([
-            'kelas_id' => $kelas1A1->id,
-            'mapel_id' => $mapel->id,
-            'guru_id'  => $mapel->guru_id,
-            'ruangan_id' => $ruang101->id,
-            'hari' => 'Senin',
-            'jam_mulai' => '07:00',
-            'jam_selesai' => '08:30',
-        ]);
+            $guruMapel[] = $mapel;
+        }
 
-        JadwalPelajaran::create([
-            'kelas_id' => $kelas2A1->id,
-            'mapel_id' => $mapel->id,
-            'guru_id'  => $mapel->guru_id,
-            'ruangan_id' => $ruang102->id,
-            'hari' => 'Selasa',
-            'jam_mulai' => '09:00',
-            'jam_selesai' => '10:30',
-        ]);
+        // === MURID ===
+        $namaLaki = ['Ahmad','Budi','Cahyo','Deni','Eko','Fajar','Galih','Hendra','Irfan','Joko'];
+        $namaPerempuan = ['Ayu','Bella','Citra','Diana','Eka','Fitri','Gita','Hana','Intan','Juli'];
 
-        JadwalPelajaran::create([
-            'kelas_id' => $kelas2A1->id,
-            'mapel_id' => $mapel->id,
-            'guru_id'  => $mapel->guru_id,
-            'ruangan_id' => $labKomputer->id,
-            'hari' => 'Rabu',
-            'jam_mulai' => '09:00',
-            'jam_selesai' => '10:30',
-        ]);
+        $globalMuridIndex = 0; // untuk NIS & NISN unik
 
-        JadwalPelajaran::create([
-            'kelas_id' => $kelas2A1->id,
-            'mapel_id' => $mapel3->id,
-            'guru_id'  => $mapel3->guru_id,
-            'ruangan_id' => $ruang101->id,
-            'hari' => 'Kamis',
-            'jam_mulai' => '09:00',
-            'jam_selesai' => '10:30',
-        ]);
+        foreach ($kelas as $kelasItem) {
+            for ($i=0; $i<10; $i++) { // 10 murid per kelas
+                $isLaki = $i % 2 == 0;
+                $nama = $isLaki ? $namaLaki[$i % count($namaLaki)] : $namaPerempuan[$i % count($namaPerempuan)];
+
+                $username = strtolower($nama) . '_' . str_replace(' ','', $kelasItem->nama_kelas) . ($i+1);
+                $email = $username . '@example.com';
+
+                $userMurid = User::create([
+                    'username' => $username,
+                    'email' => $email,
+                    'password' => bcrypt('password'),
+                    'role' => 'murid',
+                ]);
+
+                $globalMuridIndex++;
+                $nis = 2023000 + $globalMuridIndex;        // NIS unik
+                $nisn = 99887762000 + $globalMuridIndex;  // NISN unik
+
+                Murid::create([
+                    'user_id' => $userMurid->id,
+                    'nama' => $nama,
+                    'nis' => $nis,
+                    'kelas_id' => $kelasItem->id,
+                    'nisn' => $nisn,
+                    'jurusan' => str_contains($kelasItem->nama_kelas,'IPA')?'IPA':'IPS',
+                    'tahun_masuk' => 2021,
+                    'status' => 'aktif',
+                    'jk' => $isLaki?'L':'P',
+                    'tanggal_lahir' => '2005-01-01',
+                    'tempat_lahir' => 'Banyuwangi',
+                    'agama' => 'Islam',
+                    'alamat' => 'Jl. Pelajar No.'.($i+1),
+                    'nama_ayah' => 'Bapak '.$nama,
+                    'nama_ibu' => 'Ibu '.$nama,
+                    'telepon_ortu' => '081234567'.str_pad($i,3,'0',STR_PAD_LEFT),
+                ]);
+            }
+        }
+
+        // === JADWAL PELAJARAN ===
+        $hari = ['Senin','Selasa','Rabu','Kamis','Jumat'];
+        $jamMulai = ['07:00','08:30','10:00','11:30','13:00'];
+        $jamSelesai = ['08:30','10:00','11:30','13:00','14:30'];
+
+        foreach ($kelas as $kelasItem) {
+            foreach ($hari as $index => $h) {
+                $mapel = $guruMapel[$index % count($guruMapel)];
+                $ruangan = [$ruang101, $ruang102, $labKomputer][$index % 3];
+
+                JadwalPelajaran::create([
+                    'kelas_id' => $kelasItem->id,
+                    'mapel_id' => $mapel->id,
+                    'guru_id' => $mapel->guru_id,
+                    'ruangan_id' => $ruangan->id,
+                    'hari' => $h,
+                    'jam_mulai' => $jamMulai[$index],
+                    'jam_selesai' => $jamSelesai[$index],
+                ]);
+            }
+        }
     }
 }
