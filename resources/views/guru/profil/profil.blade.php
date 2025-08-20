@@ -1,9 +1,17 @@
 @extends('guru.layouts.app')
-
 @section('title', 'profil')
-
 @section('content')
+@if (session('password_updated'))
+    <div class="mb-4 px-4 py-2 rounded-lg bg-green-100 text-green-700 border border-green-300 text-sm">
+        ✅ Password berhasil diperbarui.
+    </div>
+@endif
 
+@if (session('success'))
+    <div class="mb-4 px-4 py-2 rounded-lg bg-blue-100 text-blue-700 border border-blue-300 text-sm">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md p-6 mb-6 flex items-center gap-6">
   <img src="{{ asset('storage/' . $guru->user->foto) }}" alt="foto profil" class="h-20 w-20 rounded-full object-cover ring-2 ring-blue-600">
   <div class="flex-1">
@@ -144,6 +152,35 @@
         <label class="text-xs text-gray-600">Posisi / Mata Pelajaran</label>
         <input type="text" name="mapel" value="{{ old('mapel', $guru->mapel) }}" class="w-full border rounded-lg px-3 py-2 text-sm">
       </div>
+      <div>
+      <label class="text-xs text-gray-500">Password Lama</label>
+      <input type="password" name="current_password"
+              class="w-full border @error('current_password') border-red-500 @else border-gray-300 @enderror rounded-lg px-3 py-2 text-sm">
+
+          @error('current_password')
+              <span class="text-red-500 text-xs">{{ $message }}</span>
+          @enderror
+      </div>
+      <div>
+          <label class="text-xs text-gray-500">Konfirmasi Password Baru</label>
+          <input type="password" name="new_password_confirmation"
+              class="w-full border @error('new_password_confirmation') border-red-500 @else border-gray-300 @enderror rounded-lg px-3 py-2 text-sm">
+
+          @error('new_password_confirmation')
+              <span class="text-red-500 text-xs">{{ $message }}</span>
+          @enderror
+      </div>
+
+      <div>
+          <label class="text-xs text-gray-500">Password Baru</label>
+          <input type="password" name="new_password"
+              class="w-full border @error('new_password') border-red-500 @else border-gray-300 @enderror rounded-lg px-3 py-2 text-sm">
+
+          @error('new_password')
+              <span class="text-red-500 text-xs">{{ $message }}</span>
+          @enderror
+      </div>
+
       <div class="flex justify-end gap-3">
         <button type="button" id="cancel-general-popup" class="px-4 py-2 rounded-lg bg-gray-200 text-sm">Batal</button>
         <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm">Simpan</button>

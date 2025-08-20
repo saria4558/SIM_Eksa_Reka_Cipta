@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 // use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\JadwalPelajaran;
 use App\Models\Kelas;
 use App\Models\Murid;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class MuridController extends Controller
@@ -26,18 +27,28 @@ class MuridController extends Controller
     public function updateUmum(Request $request)
     {
         try {
-            $murid = Murid::where('user_id', Auth::id())->first();
+            $murid = Murid::where('user_id', Auth::id())->firstOrFail();
             $user = $murid->user;
 
-            $request->validate([
+            // Validasi manual
+            $validator = Validator::make($request->all(), [
                 'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-                // 'kelas' => 'required|string|max:255',
+                'current_password' => 'nullable|required_with:new_password',
+                'new_password' => 'nullable|confirmed',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             ]);
 
-            // $murid->kelas = $request->kelas;
+            if ($validator->fails()) {
+                return back()
+                    ->withErrors($validator)
+                    ->withInput()
+                    ->with('modal', 'general'); // biar modal tetap terbuka
+            }
+
+            // Update username
             $user->username = $request->username;
 
+            // Update foto
             if ($request->hasFile('foto')) {
                 if ($user->foto) {
                     Storage::disk('public')->delete($user->foto);
@@ -46,16 +57,37 @@ class MuridController extends Controller
                 $user->foto = $path;
             }
 
-            // $murid->save();
+            // Update password jika ada
+            if ($request->filled('new_password')) {
+                if (!Hash::check($request->current_password, $user->password)) {
+                    return back()
+                        ->withErrors(['current_password' => 'Password lama salah'])
+                        ->withInput()
+                        ->with('modal', 'general');
+                }
+
+                $user->password = Hash::make($request->new_password);
+                // kalau password berhasil diupdate, kasih flash message khusus
+                $request->session()->flash('password_updated', true);
+            }
+
+            // Simpan perubahan
             $user->save();
 
             return redirect()->route('wali.profil.profil')
                 ->with('success', 'Profil umum berhasil diperbarui.');
-        } catch (ValidationException $e) {
-            return redirect()->back()
-                ->withErrors($e->validator)
+
+        } catch (\Exception $e) {
+            // Log error ke storage/logs/laravel.log
+            Log::error('Update Profil Error: '.$e->getMessage(), [
+                'user_id' => Auth::id(),
+                'request' => $request->all()
+            ]);
+
+            return back()
+                ->withErrors(['general' => 'Terjadi kesalahan server.'])
                 ->withInput()
-                ->with('modal', 'general'); // ← ini bikin modal muncul
+                ->with('modal', 'general');
         }
     }
 
@@ -133,7 +165,7 @@ class MuridController extends Controller
         $murid->alamat_ortu = $request->alamat_ortu;
 
         $murid->save();
-        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
+        return redirect()->route('wali.profil.profil')->with('success', 'Informasi orang tua berhasil diperbarui.');
     }
 
     //update more info
@@ -157,8 +189,10 @@ class MuridController extends Controller
         $murid->no_kip = $request->no_kip;
         $murid->golongan_darah = $request->golongan_darah;
         $murid->save();
-        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
+        return redirect()->route('wali.profil.profil')->with('success', 'Informasi lainnya berhasil diperbarui.');
     }
+
+
 
     public function index()
     {
@@ -176,19 +210,16 @@ class MuridController extends Controller
         return view('staff.data-murid.create');
     }
 
-    public function jadwal()
-    {
-        $murid = Murid::where('user_id', Auth::id())->first();
+    // public function jadwal()
+    // {
+    //     $murid = Murid::where('user_id', Auth::id())->first();
 
-        $jadwal = JadwalPelajaran::where('kelas_id', $murid->kelas_id)
-            ->with(['mataPelajaran.guru', 'kelas'])
-            ->get();
+    //     $jadwal = JadwalPelajaran::where('kelas_id', $murid->kelas_id)
+    //         ->with(['mataPelajaran.guru', 'kelas'])
+    //         ->get();
 
-        return view('murid.jadwal', compact('jadwal'));
-    }
-
-
-
+    //     return view('murid.jadwal', compact('jadwal'));
+    // }
 
 
     public function store(Request $request)

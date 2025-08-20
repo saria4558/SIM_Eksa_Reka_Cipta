@@ -32,7 +32,7 @@ public function jadwalGuru()
 
     $orderHari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
-    $jadwal = JadwalPelajaran::with(['kelas', 'mapel'])
+    $jadwal = JadwalPelajaran::with(['kelas', 'mapel', 'ruangan'])
         ->where('guru_id', $guru->id)
         ->whereIn('hari', $orderHari)
         ->get()
@@ -41,7 +41,7 @@ public function jadwalGuru()
         })
         ->groupBy('hari');
 
-    return view('guru.jadwal', compact('jadwal', 'orderHari'));
+    return view('guru.jadwal.jadwal', compact('jadwal', 'orderHari', 'guru'));
 }
 
 }

@@ -3,8 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\MuridController;
 use App\Models\JadwalPelajaran;
+use App\Models\Mapel;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -56,9 +59,9 @@ Route::middleware('role:murid')->group(function () {
         return view('wali.dashboard.dashboard');
     })->name('wali.dashboard.dashboard');
 
-    Route::get('/wali/jadwal', function () {
-        return view('wali.jadwal.jadwal');
-    })->name('wali.jadwal.jadwal');
+    // Route::get('/wali/jadwal', function () {
+    //     return view('wali.jadwal.jadwal');
+    // })->name('wali.jadwal.jadwal');
 
     Route::get('/wali/mapel', function () {
         return view('wali.mapel.mapel');
@@ -70,10 +73,11 @@ Route::middleware('role:murid')->group(function () {
 
     Route::get('/wali/profil', [MuridController::class, 'profil'])->name('wali.profil.profil');
     Route::post('/wali/update-umum', [MuridController::class, 'updateUmum'])->name('murid.update.umum');
-    Route::put('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
+    Route::post('/wali/update-personal', [MuridController::class, 'personalInfo'])->name('murid.update.personal');
     Route::post('/wali/update-parents', [MuridController::class, 'parentsInfo'])->name('murid.update.parents');
     Route::post('/wali/update-more', [MuridController::class, 'moreInfo'])->name('murid.update.more');
     Route::get('/wali/jadwal', [JadwalController::class, 'jadwalMurid'])->name('murid.jadwal');
+    Route::get('/wali/mapel', [MapelController::class, 'mapelMurid'])->name('murid.mapel');
 
     Route::get('/wali/tagihan', function () {
         return view('wali.tagihan.tagihan');
@@ -83,8 +87,10 @@ Route::middleware('role:murid')->group(function () {
 // guru
 Route::middleware('role:guru')->group(function () {
     Route::get('/guru/dashboard', [GuruController::class, 'headerDashboard'])->name('guru.dashboard.dashboard');
-    Route::get('/guru/jadwal', [GuruController::class, 'headerJadwal'])->name('guru.jadwal.jadwal');
-    Route::get('/guru/kelas', [GuruController::class, 'headerKelas'])->name('guru.kelas.kelas');
+    // Route::get('/guru/jadwal', [GuruController::class, 'headerJadwal'])->name('guru.jadwal.jadwal');
+    Route::get('/guru/jadwal', [JadwalController::class, 'jadwalGuru'])->name('guru.jadwal');
+    // Route::get('/guru/kelas', [GuruController::class, 'headerKelas'])->name('guru.kelas.kelas');
+    Route::get('/guru/kelas', [KelasController::class, 'kelasDiampu'])->name('guru.kelas');
     Route::get('/guru/presensi', [GuruController::class, 'headerPresensi'])->name('guru.presensi.presensi');
     Route::get('/guru/profil', [GuruController::class, 'profil'])->name('guru.profil.profil');
     Route::post('/guru/update-umum', [GuruController::class, 'updateUmum'])->name('guru.update.umum');
