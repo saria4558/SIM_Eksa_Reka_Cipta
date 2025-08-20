@@ -8,7 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
 {
@@ -39,15 +41,25 @@ class GuruController extends Controller
     }
     // Update data umum
     public function updateUmum(Request $request)
-    {
+    { 
+        try {
         $guru = Guru::where('user_id', Auth::id())->first();
         $user = $guru->user;
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
+            'current_password' => 'nullable|required_with:new_password',
+            'new_password' => 'nullable|confirmed',
             'mapel' => 'required|string|max:255',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+         if ($validator->fails()) {
+                return back()
+                    ->withErrors($validator)
+                    ->withInput()
+                    ->with('modal', 'general'); // biar modal tetap terbuka
+            }
 
         $guru->nama = $request->nama;
         $guru->mapel = $request->mapel;
@@ -63,10 +75,36 @@ class GuruController extends Controller
             $user->foto = $path;
         }
 
+        // Update password jika ada
+        if ($request->filled('new_password')) {
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()
+                ->withErrors(['current_password' => 'Password lama salah'])
+                ->withInput()
+                ->with('modal', 'general');
+            }
+
+            $user->password = Hash::make($request->new_password);
+            // kalau password berhasil diupdate, kasih flash message khusus
+            $request->session()->flash('password_updated', true);
+            }
+
         $guru->save();
         $user->save();
 
         return redirect()->route('guru.profil.profil')->with('success', 'Profil umum berhasil diperbarui.');
+    } catch (\Exception $e) {
+            // Log error ke storage/logs/laravel.log
+            Log::error('Update Profil Error: '.$e->getMessage(), [
+                'user_id' => Auth::id(),
+                'request' => $request->all()
+            ]);
+
+            return back()
+                ->withErrors(['general' => 'Terjadi kesalahan server.'])
+                ->withInput()
+                ->with('modal', 'general');
+        }
     }
 
     // Update informasi pribadi

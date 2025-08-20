@@ -4,27 +4,19 @@
 <body class="p-6">
   <!-- ===== Halaman Daftar Pelajaran ===== -->
   <div id="page-pelajaran" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @php
-    $mapelList = [
-        ['nama' => 'Matematika', 'kelas' => 'X', 'guru' => 'Pak Budi', 'ikon' => 'https://img.icons8.com/ios-filled/50/math.png'],
-        ['nama' => 'Fisika', 'kelas' => 'X', 'guru' => 'Pak Rudi', 'ikon' => 'https://img.icons8.com/ios-filled/50/physics.png'],
-        ['nama' => 'Kimia', 'kelas' => 'X', 'guru' => 'Bu Erna', 'ikon' => 'https://img.icons8.com/ios-filled/50/test-tube.png'],
-        ['nama' => 'Biologi', 'kelas' => 'X', 'guru' => 'Bu Dina', 'ikon' => 'https://img.icons8.com/ios-filled/50/microscope.png'],
-        ['nama' => 'Bahasa Inggris', 'kelas' => 'X', 'guru' => 'Miss Lina', 'ikon' => 'https://img.icons8.com/ios-filled/50/open-book--v1.png'],
-        ['nama' => 'Bahasa Indonesia', 'kelas' => 'X', 'guru' => 'Pak Agus', 'ikon' => 'https://img.icons8.com/ios-filled/50/book.png'],
-        ['nama' => 'Sejarah', 'kelas' => 'X', 'guru' => 'Bu Diah', 'ikon' => 'https://img.icons8.com/material-outlined/48/hourglass.png'],
-        ['nama' => 'Agama', 'kelas' => 'X', 'guru' => 'Pak Hasan', 'ikon' => 'https://img.icons8.com/ios-filled/50/pray.png'],
-    ];
-    @endphp
-    @foreach($mapelList as $mapel)
-      <div onclick="showDetail('{{ $mapel['nama'] }}')" class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition-all cursor-pointer hover:-translate-y-1 hover:shadow-lg">
+    @foreach($mapelKelas as $mapel)
+      <div onclick="showDetail('{{ $mapel->mapel->nama_mapel }}')" 
+           class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition-all cursor-pointer hover:-translate-y-1 hover:shadow-lg">
         <div class="flex items-center p-6">
           <div class="flex-shrink-0 bg-blue-100 p-3 rounded-full">
-            <img src="{{ $mapel['ikon'] }}" alt="Ikon {{ $mapel['nama'] }}" class="h-8 w-8">
+            <img src="https://img.icons8.com/ios-filled/50/book.png" 
+                 alt="Ikon {{ $mapel->mapel->nama_mapel }}" class="h-8 w-8">
           </div>
           <div class="ml-4">
-            <h3 class="font-bold text-lg">{{ $mapel['nama'] }}</h3>
-            <p class="text-gray-600">Kelas {{ $mapel['kelas'] }} - {{ $mapel['guru'] }}</p>
+            <h3 class="font-bold text-lg">{{ $mapel->mapel->nama_mapel }}</h3>
+            <p class="text-gray-600">
+              Kelas {{ $mapel->kelas->nama_kelas }} - {{ $mapel->guru->nama }}
+            </p>
           </div>
         </div>
         <div class="px-6 pb-4">
@@ -77,6 +69,7 @@
             <th class="px-4 py-2 text-left">Judul</th>
             <th class="px-4 py-2 text-left">Tanggal Kumpul</th>
             <th class="px-4 py-2 text-left">Nilai</th>
+            <th class="px-4 py-2 text-left">File Penugasan</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -84,6 +77,19 @@
             <td class="px-4 py-2">Tugas Sebelumnya</td>
             <td class="px-4 py-2">10 Juli 2025</td>
             <td class="px-4 py-2 text-blue-600 font-bold">90</td>
+            <td class="px-4 py-2">
+              {{-- <button onclick="openModal()" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-3 py-1 rounded-lg">
+                Serahkan
+            </button> --}}
+              <button class="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium px-3 py-1 rounded-lg">
+  <svg class="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24">
+    <!-- ikon download -->
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Download file</span>
+</button>
+
+            </td>
           </tr>
         </tbody>
       </table>
