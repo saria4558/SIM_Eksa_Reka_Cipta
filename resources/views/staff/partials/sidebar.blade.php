@@ -85,6 +85,16 @@
                                 class="flex items-center px-2 py-2 text-sm font-medium rounded-md {{ Request::is('staff/jadwal-pelajaran') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
                                 <i class="fas fa-calendar-alt min-w-[20px]"></i> Jadwal Pelajaran
                             </a>
+                            <a href="/staff/ruangan"
+                                class="flex items-center px-2 py-2 text-sm font-medium rounded-md
+                                {{ Request::is('staff/ruangan') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                                <i class="fas fa-users min-w-[25px]"></i> Kelola Ruangan 
+                            </a>
+                            <a href="/staff/kelas"
+                                class="flex items-center px-2 py-2 text-sm font-medium rounded-md
+                                {{ Request::is('staff/kelas') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
+                                <i class="fas fa-users min-w-[25px]"></i> Kelola Kelas
+                            </a>
                             <a href="/staff/ekskul"
                                 class="flex items-center px-2 py-2 text-sm font-medium rounded-md {{ Request::is('staff/exstra') ? 'bg-blue-100 text-blue-600' : 'hover:bg-blue-50' }}">
                                 <i class="fas fa-swimmer min-w-[20px]"></i> Ekstrakurikuler

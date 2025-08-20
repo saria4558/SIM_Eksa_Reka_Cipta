@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Container\Attributes\Storage;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
     public function index()
     {
+        // Ambil semua staff dengan relasi user
         $staffs = Staff::with('user')->latest()->get();
         return view('staff.data-staff.index', compact('staffs'));
     }
 
     public function create()
     {
-        return view('staff.data-staff.create');
+        // Ambil user untuk pilihan (misalnya dropdown user yang belum jadi staff)
+        $users = User::doesntHave('staff')->get();
+        return view('staff.data-staff.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -23,18 +29,23 @@ class StaffController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id',
             'nama' => 'required|string|max:255',
-            'nip' => 'nullable|string|unique:staffs,nip',
+            'nip' => 'nullable|string|unique:staff,nip',
+            'nuptk' => 'nullable|string',
+            'nrg' => 'nullable|string',
+            'peg_id' => 'nullable|string',
+            'npk' => 'nullable|string',
             'tempat_lahir' => 'nullable|string',
             'tanggal_lahir' => 'nullable|date',
-            'jk' => 'required|string',
+            'jk' => 'required|string|in:L,P',
             'agama' => 'nullable|string',
             'jabatan' => 'required|string',
-            'status' => 'required|in:Aktif,Tidak Aktif,Pensiun,Pindah',
+            'status_kepegawaian' => 'required|in:Tetap,Honorer,Kontrak',
             'alamat' => 'nullable|string',
             'no_hp' => 'nullable|string',
-            'email_kantor' => 'nullable|email',
             'pendidikan_terakhir' => 'nullable|string',
-            'foto' => 'nullable|string'
+            'jurusan' => 'nullable|string',
+            'nama_institusi_pendidikan_terakhir' => 'nullable|string',
+            'tahun_lulus' => 'nullable|numeric',
         ]);
 
         Staff::create($validated);
@@ -49,25 +60,31 @@ class StaffController extends Controller
 
     public function edit(Staff $staff)
     {
-        return view('staff.data-staff.edit', compact('staff'));
+        $users = User::all();
+        return view('staff.data-staff.edit', compact('staff', 'users'));
     }
 
     public function update(Request $request, Staff $staff)
     {
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'nip' => 'nullable|string|unique:staffs,nip,' . $staff->id,
+            'nip' => 'nullable|string|unique:staff,nip,' . $staff->id,
+            'nuptk' => 'nullable|string',
+            'nrg' => 'nullable|string',
+            'peg_id' => 'nullable|string',
+            'npk' => 'nullable|string',
             'tempat_lahir' => 'nullable|string',
             'tanggal_lahir' => 'nullable|date',
-            'jk' => 'required|string',
+            'jk' => 'required|string|in:L,P',
             'agama' => 'nullable|string',
             'jabatan' => 'required|string',
-            'status' => 'required|in:Aktif,Tidak Aktif,Pensiun,Pindah',
+            'status_kepegawaian' => 'required|in:Tetap,Honorer,Kontrak',
             'alamat' => 'nullable|string',
             'no_hp' => 'nullable|string',
-            'email_kantor' => 'nullable|email',
             'pendidikan_terakhir' => 'nullable|string',
-            'foto' => 'nullable|string'
+            'jurusan' => 'nullable|string',
+            'nama_institusi_pendidikan_terakhir' => 'nullable|string',
+            'tahun_lulus' => 'nullable|numeric',
         ]);
 
         $staff->update($validated);
@@ -80,5 +97,149 @@ class StaffController extends Controller
         $staff->delete();
 
         return redirect()->route('staff.data-staff.index')->with('success', 'Data staff berhasil dihapus.');
+    }
+
+    public function profil()
+    {
+        $staff = Staff::with('user')->where('user_id', Auth::id())->first();
+
+        return view('staff.profil.index', compact('staff'));
+    }
+
+    //update data umum
+    public function updateUmum(Request $request)
+    {
+        try {
+            $staff = Staff::where('user_id', Auth::id())->first();
+            $user = $staff->user;
+
+            $request->validate([
+                'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            ]);
+
+            // $murid->kelas = $request->kelas;
+            $user->username = $request->username;
+
+            if ($request->hasFile('foto')) {
+                if ($user->foto) {
+                    Storage::disk('public')->delete($user->foto);
+                }
+                $path = $request->file('foto')->store('user', 'public');
+                $user->foto = $path;
+            }
+
+            // $murid->save();
+            $user->save();
+
+            return redirect()->route('wali.profil.profil')
+                ->with('success', 'Profil umum berhasil diperbarui.');
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal', 'general'); // ← ini bikin modal muncul
+        }
+    }
+
+     //update personal info
+    public function personalInfo(Request $request)
+    {
+        try {
+            $murid = Murid::where('user_id', Auth::id())->first();
+            $user = $murid->user;
+
+            $request->validate([
+                'nama'=> 'required|string|max:255',
+                'nis' => 'required|string|max:10',
+                'nisn' => 'required|string',
+                'telepon' => 'required|string|max:20',
+                'tempat_lahir' => 'required|string|max:255',
+                'tanggal_lahir' => 'required|date',
+                'agama' => 'required|string|max:255',
+                'jk' => 'required|string',
+                'alamat' => 'required|string|max:255',
+                'kelas_id' => 'required|integer|exists:kelas,id',
+                'jurusan' => 'required|string|max:255',
+                'tahun_masuk' => 'required|string|max:255',
+                'status'=> 'required|string|max:10',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+            ]);
+
+            $murid->nama = $request->nama;
+            $murid->nis = $request->nis;
+            $murid->nisn = $request->nisn;
+            $murid->telepon = $request->telepon;
+            $murid->tempat_lahir = $request->tempat_lahir;
+            $murid->tanggal_lahir = $request->tanggal_lahir;
+            $murid->agama = $request->agama;
+            $murid->jk = $request->jk;
+            $murid->alamat = $request->alamat;
+            $murid->kelas_id = $request->kelas_id; // ✅ update murid
+            $murid->jurusan = $request->jurusan;
+            $murid->tahun_masuk = $request->tahun_masuk;
+            $murid->status = $request->status;
+            $user->email = $request->email;
+
+            $murid->save();
+            $user->save();
+
+            return redirect()->route('wali.profil.profil')
+                ->with('success', 'Informasi Pribadi berhasil diperbarui.');
+        } catch (ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal', 'personal'); // ← ini bikin modal muncul
+        }
+    }
+
+
+    //update parents info
+    public function parentsInfo(Request $request)
+    {
+        $murid = Murid::where('user_id', Auth::id())->first();
+        $request->validate([
+            'nama_ayah'=> 'required|string|max:255',
+            'nama_ibu' => 'required|string|max:225',
+            'pekerjaan_ayah'=>'required|string|max:225',
+            'pekerjaan_ibu'=> 'required|string|max:255',
+            'telepon_ortu' => 'required|string|max:225',
+            'alamat_ortu'=>'required|string|max:225',
+        ]);
+
+        $murid->nama_ayah = $request->nama_ayah;
+        $murid->nama_ibu = $request->nama_ibu;
+        $murid->pekerjaan_ayah = $request->pekerjaan_ayah;
+        $murid->pekerjaan_ibu = $request->pekerjaan_ibu;
+        $murid->telepon_ortu = $request->telepon_ortu;
+        $murid->alamat_ortu = $request->alamat_ortu;
+
+        $murid->save();
+        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
+    }
+
+    //update more info
+    public function moreInfo(Request $request)
+    {
+        $murid = Murid::where('user_id', Auth::id())->first();
+        $request->validate([
+            'nama_wali'=> 'required|string|max:255',
+            'hubungan_wali'=> 'required|string|max:225',
+            'pekerjaan_wali'=> 'required|string|max:225',
+            'no_kip' => 'nullable|string|max:225',
+            'catatan_kesehatan' => 'nullable|string|max:1000',
+            'catatan_prestasi' => 'nullable|string|max:1000',
+            'catatan_pelanggaran' => 'nullable|string|max:1000',
+            'golongan_darah'=>'required|string|max:225',
+        ]);
+
+        $murid->nama_wali = $request->nama_wali;
+        $murid->hubungan_wali = $request->hubungan_wali;
+        $murid->pekerjaan_wali = $request->pekerjaan_wali;
+        $murid->no_kip = $request->no_kip;
+        $murid->golongan_darah = $request->golongan_darah;
+        $murid->save();
+        return redirect()->route('wali.profil.profil')->with('success', 'Informasi pribadi berhasil diperbarui.');
     }
 }

@@ -21,11 +21,12 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
         UserSeeder::class,
+        StaffSeeder::class,
     ]);
     $this->call([Murid2Seeder::class]);
 
     $this->call([JadwalMapelSeeder::class]);
     }
 
-    
+
 }

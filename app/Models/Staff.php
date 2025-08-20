@@ -7,23 +7,36 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Staff extends Model
 {
-    protected $table = 'staffs';
+    protected $table = 'staff';
 
     protected $fillable = [
         'user_id',
-        'nama',
         'nip',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'jk',
-        'agama',
+        'nuptk',
+        'nrg',
+        'peg_id',
+        'npk',
+        'nama',
         'jabatan',
-        'status',
+        'jk',
         'alamat',
         'no_hp',
-        'email_kantor',
+        'status_kepegawaian',
+        'nik',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'agama',
+        'golongan_darah',
+        'npsn_sekolah',
+        'unit',
+        'tugas_tambahan',
+        'tmt',
         'pendidikan_terakhir',
-        'foto',
+        'jurusan',
+        'nama_institusi_pendidikan_terakhir',
+        'tahun_lulus',
+        'keahlian_khusus',
+        'media_sosial',
     ];
 
     public function user(): BelongsTo
